@@ -102,6 +102,15 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 \section{Data Analysis}
 \label{sec:data}
 
+We use data from all SDSS runs up to an including run 7202 (Data Release 7), including all 6 SDSS camera columns. The data were coadded, and all objects detected in the i-band coadds were assigned a deepSourceId (== objectId). For star-galaxy separation, the entire clump was considered as one parent source (with single ParentSourceId). For an object which is a parent (eg. a galaxy), ParentSourceId is null.  
+
+Forced photometry was performed in u,g,r,i,z  on all sources in locations specified by i-band coadds. [difference imaging ?]  Colors can be defined in two ways: biased and unbiased.  Because coadds deepen the detection threshold, objects that were detected in i-band coadds  might not be detectable in all individual epochs. Thus the median of coadd photometry (only when an object was detected in individual epochs) may be biased (especially for faint sources) towards higher brightness.  On the other hand, the median of catalog forced photometry would be substantially lower, even below the detection threshold in an individual epoch. 
+Therefore, given these caveats, for each object we employ the median of catalog forced photometry to provide the average magnitude in a given filter, used to calculate the color information. 
+
+Part of the intitial pre-processing was  correction for galactic extinction, given the [cite SOURCE] values of E(B-V) calculated for the direction of each source.  
+
+
+
 \section{Results}
 \label{sec:results}
 

@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  12 FEB 2016 16:43
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  17 FEB 2016 12:11
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -594,12 +594,12 @@ LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 276.
 LaTeX Font Info:    Redeclaring math symbol \Bbbk on input line 277.
 LaTeX Font Info:    Redeclaring math symbol \hslash on input line 278.
 LaTeX Font Info:    Redeclaring math symbol \backepsilon on input line 281.
-)
-No file main.aux.
+) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 83.
 LaTeX Font Info:    Try loading font information for OML+txmi on input line 83.
+
 
 (/usr/share/texmf/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
@@ -694,6 +694,7 @@ Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
 )
 LaTeX Info: Redefining \ref on input line 83.
 LaTeX Info: Redefining \pageref on input line 83.
+ (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
@@ -726,41 +727,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--90
 
  []
 
-
-LaTeX Warning: Reference `firstpage' on page 1 undefined on input line 135.
-
-
-LaTeX Warning: Reference `lastpage' on page 1 undefined on input line 135.
-
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 135.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 144.
 
 (/usr/share/texmf/tex/latex/ae/omsaer.fd
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-
-] (./main.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 5070 strings out of 256216
- 63412 string characters out of 1917073
- 122285 words of memory out of 1500000
- 8217 multiletter control sequences out of 10000+200000
+ 5082 strings out of 256216
+ 63521 string characters out of 1917073
+ 123478 words of memory out of 1500000
+ 8222 multiletter control sequences out of 10000+200000
  58141 words of font info for 136 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  32i,15n,34p,940b,333s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
-st, replaced by a fixed one
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced bu
+t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
+replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/blu
 esky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmbx8.pfb></usr/sha
@@ -770,9 +760,9 @@ mf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr
 9.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/font
 s/type1/bluesky/cm/cmti8.pfb></usr/share/texmf/fonts/type1/public/txfonts/rtxmi
 .pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (1 page, 63430 bytes).
+Output written on main.pdf (1 page, 68345 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
- 7 named destinations out of 1000 (max. 131072)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 84 PDF objects out of 1000 (max. 8388607)
+ 8 named destinations out of 1000 (max. 131072)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
