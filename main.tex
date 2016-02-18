@@ -113,7 +113,7 @@ Forced photometry was performed in u,g,r,i,z  on the individual epoch images (NO
 The average brightness of an object in  a given filter can be found in two ways. The median of the forced photometry values (over all epochs, including the negative fluxes)   will better reflect the actual brightness of a variable source. This may mean that the median is negative, i.e. the median flux is negative. Since the magnitude is undefined for negative fluxes, we then revert to the lightcurve, and for each exposure with negative flux we find the zero point magnitude ($m1$) - the magnitude for a source with a flux of 1 count per sec, different for each exposure.  The zero point magnitude for each exposure with negative flux is calculated from the  Flux of 0 magnitude source,  $F0$,  as  $m1 = 2.5 \log_{10}{F0}$. For that object the new median magnitude in that filter will be the upper limit. 
 
 Colors can be calculated in two ways: using the median of forced photometry over all epochs (object detected in coadded i-band has photometry in all epochs), or the median over single-epoch detections (only when an object was above the detection threshold for a single epoch).  
-Thus the median over all detections will be biased (especially for faint sources) towards higher brightness.  On the other hand, the median over all epochs will be more representative of the true brightness of an object in a given filter.  If a median brightness is negative, we use zero point magnitudes and in such cases median over all epochs will be an upper limit on brightness, but still less biased than median over all detections. Therefore  we choose to use median over all epochs to calculate colors.  
+Thus the median over all detections will be biased (especially for faint sources) towards higher brightness.  On the other hand, the median over all epochs will be more representative of the true brightness of an object in a given filter.  If a median brightness is negative, we use zero point magnitudes and in such cases median over all epochs will be an upper limit on brightness, but still less biased than median over all detections. Therefore  we choose to use median over all epochs to calculate colors (see Fig.~\ref{fig:colors_example} for an example).  
 
 Since the reported fluxes are not extinction-corrected, we use a table of E(B-V) in a direction of a given source to correct for the galactic extinction. We use the formula  $x_{corr}  = x_{obs} + A_{x} * E(B-V)$, where $x$ is  u,g,r,i,z , and $A_x$ is 5.155, 3.793, 2.751, 2.086, 1.479  for each filter respectively  [SOURCE? ] 
 
@@ -121,6 +121,12 @@ Since the reported fluxes are not extinction-corrected, we use a table of E(B-V)
 
 \section{Results}
 \label{sec:results}
+
+\begin{figure}
+\label{fig:colors_example}
+ \includegraphics[width=\columnwidth]{Fig_2_Ivezic_2003_200000_sources.png}
+ \caption{A color-magnitude plot, analogous to Figure 2 from Ivezi\'c+2003 . We use only 200 000 sources, corrected for galactic extinction,  plotting the median photometry over all epochs only for sources where median flux is not negative. }
+\end{figure}
 
 \section{Conclusions}
 \label{sec:conclusions}
