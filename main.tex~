@@ -27,9 +27,9 @@
 % installations will be fine) or prefer the old Computer Modern fonts, comment
 % out the following line
 %\usepackage{newtxtext,newtxmath}
-\usepackage{txfonts}
+%\usepackage{lmodern}
 % Depending on your LaTeX fonts installation, you might get better results with one of these:
-%\usepackage{mathptmx}
+\usepackage{mathptmx}
 %\usepackage{txfonts}
 
 
@@ -45,7 +45,9 @@
 \usepackage{graphicx}	% Including figure files
 \usepackage{amsmath}	% Advanced maths commands
 \usepackage{amssymb}	% Extra maths symbols
-
+%\usepackage{fancyvrb}
+%\VerbatimFootnotes
+\usepackage{cprotect}  % to allow verb in caption 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
@@ -111,7 +113,7 @@ The data were coadded, and all objects detected in the i-band coadds were assign
 Forced photometry was performed in u,g,r,i,z  on the individual epoch images (NOT difference imaging),  in locations specified by i-band coadds. (DIFFERENCE imaging is when photometry is done on  coadd - individual-epoch-image) . Therefore in some cases the flux reported for a given aperture is negative, because after background subtraction noise oscillates around 0, and when it is scaled up,  it can have negative values. [stored in rawDataFPSplit ]  The background in the  optical bands is bright, and if we assume that the measured number of bacground counts oscillates around the value $B_{0}$, then the measured background count $B$  is distributed as  a Gaussian of width $\sigma_{B}$ :   $B-B_{0}  ~ N(0,\sigma_{B}$. The noise is Poissonian, i.e. depends on  the number of counts, and since for optical mesaurements the number of counts is large,  $\sigma_{B} = \sqrt {B}$. On a 4kx4k  CCD, with 16 Mpix, $5\sigma$ (corresponding  to  1 false detection in a million), we would expect about 16 false detections.  
 Now considering the distribution of the probability (likelihood) of flux measurement   $L(F|data)$, for bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources the probability, centered around the $F_{S}$, is much wider, so that there is a nonzero probability of negative flux measurement. A Bayesian  way to address this issue is to impose the prior $p(F)$, since we understand that physically flux cannot be negative, so that the posterior probability $p(F|data) \propto L(F|data) p(F)$. A simple flat prior, being 0 for $F<0$ and 1 otherwise,  would not affect the measured $F_S$ for bright sources, but for faint sources it would move the distribution (posterior) to be above zero flux. This would be the upper limit on the flux of that source.  Therefore we decided to apply the Bayesian prior  in case where  $ \langle F_{L} \rangle  < k \sigma>$, with $k=2$ ( $2 \sigma$ corresponds to $2\%$ probability of $F_{L} < 0$ ). 
 
-To test our method we generate fiducial lightcurves (DRW / sinusoidal / ...), with a uniform sampling ($N=100-1000$). Based on the generated flux ($F_{true}$) we define $5\sigma$ level as the robust 25-th percentile (or median) of the $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we defined $F_{obs}$ as $F_{true} + F_{noise}$, with the Gaussian noise $F_{noise} = \sigma_{F}  \, N(0,1)$ . For each $F_{obs}$  we consider a normalized Gaussian $N(\mu=0, \sigma=1)$, where $x^{*} = \langle F_{L} \rangle / \sigma_{F} =  F_{obs} / \sigma_{F}$, is  a position from which we  calculate the area $A = \int_{x^{*}}^{\infty} {F_{L}}$, defining by $x{B}$ a point where the $ \int_x_{B} ^{\infty} {F_{L}}= 0.05 A$  . Then  the upper limit on our measurement  is  $F_{faint} ^ {upper} = (x_{B} + x^{*}) \, \sigma_{F}$
+To test our method we generate fiducial lightcurves (DRW / sinusoidal / ...), with a uniform sampling ($N=100-1000$). Based on the generated flux ($F_{true}$) we define $5\sigma$ level as the robust 25-th percentile (or median) of the $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we defined $F_{obs}$ as $F_{true} + F_{noise}$, with the Gaussian noise $F_{noise} = \sigma_{F}  \, N(0,1)$ . For each $F_{obs}$  we consider a normalized Gaussian $N(\mu=0, \sigma=1)$, where $x^{*} = \langle F_{L} \rangle / \sigma_{F} =  F_{obs} / \sigma_{F}$, is  a position from which we  calculate the area $A = \int_{x^{*}}^{\infty} {F_{L}}$, defining by $x_{B}$ a point where the $ \int_{x_{B}} ^{\infty} {F_{L}}= 0.05 A$  . Then  the upper limit on our measurement  is  $F_{faint} ^ {upper} = (x_{B} + x^{*}) \, \sigma_{F}$
 
 
 
@@ -130,28 +132,27 @@ The SDSS Stripe 82 data was processed in two data centers : NCSA (National Cente
 \section{Results}
 \label{sec:results}
 
-\begin{frame}
-	\begin{figure}
 
-	\label{fig:colors_example}
-	\includegraphics[width=1\textwidth]{Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png}
-	 \caption{A color-magnitude plot, reproducing the results of Sesar+2010 , Fig.23 .  We show here only NCSA-processed sources, which is why certain RA ranges are omitted or have less sources. We only select sources with \verb|extendedness=0| parameter (stars).  The scale is showing the $\log_10$ of count. All sources have their  colors corrected for extinction. On first two panels the features of Sagittarius Stream are clearly visible.}
-
-	\end{figure}
-\end{frame}
+\begin{figure*}
+\label{fig:colors_example}
+\includegraphics[width=\textwidth]{Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png}
+\cprotect\caption{A color-magnitude plot , reproducing the results of Sesar+2010 , Fig.23 .  We show here only NCSA-processed sources, which is why certain RA ranges are omitted or have less sources. We only select sources with \verb|extendedness=0| parameter (stars).  The scale is showing the $\log_{10}$ of count. All sources have their  colors corrected for extinction. On first two panels the features of Sagittarius Stream are clearly visible. }
+\end{figure*}
+% 
 
 \begin{figure}
 \label{fig:coadds_ext}
  \includegraphics[width=\columnwidth]{Extendedness_coadd_data_16520093_srcs_lim.png}
- \caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness| parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact. }
+ \cprotect\caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness | parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact.  }
 \end{figure}
+% 
 
-
-\begin{figure}
+% http://tex.stackexchange.com/questions/3173/how-to-make-a-figure-span-on-two-columns-in-a-scientific-paper 
+\begin{figure*}
 \label{fig:coadds_ext_hist}
  \includegraphics[width=\textwidth]{Extendedness_coadd_histograms.png}
  \caption{The histograms show the count of sources in 5 magnitude bins, corresponding to the vertical cut through Fig.~\ref{fig:coadds_ext}. It helps to verify how well can the extended and compact sources be separated based solely on the iPsfMag-iModelMag}
-\end{figure}
+\end{figure*}
 
 
 
