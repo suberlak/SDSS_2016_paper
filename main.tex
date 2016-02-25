@@ -123,16 +123,40 @@ Thus the median over all detections will be biased (especially for faint sources
 
 Since the reported fluxes are not extinction-corrected, we use a table of E(B-V) in a direction of a given source to correct for the galactic extinction. We use the formula  $x_{corr}  = x_{obs} + A_{x} * E(B-V)$, where $x$ is  u,g,r,i,z , and $A_x$ is 5.155, 3.793, 2.751, 2.086, 1.479  for each filter respectively  [SOURCE? ] 
 
+The SDSS Stripe 82 data was processed in two data centers : NCSA (National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign, IL) and IN2P3  (Institut national de physique nucl\'eaire et de physique des particules in Paris, France). NCSA processed data  with  $-40 \, (+320) < RA < +10 $ and IN2P3 with $ +5 < RA < +55$ degrees. In the NCSA data  there are $16520093$ sources in the coadd photometry (\verb|iCoaddPhotometryAll.csv|), and $16514187$ sources ($5906$ less) in \verb|DeepSourceNCSA_i_lt300.csv|. There are $12373162$ sources with median photometry, matched with E(B-V) data (\verb|medianPhotometry.csv|) , and  of these, $5892054$ brighter than $23$ mag, with calculated median flux and colors (\verb|ugrizMetrics.csv|). 
+
 
 
 \section{Results}
 \label{sec:results}
 
+\begin{frame}
 \begin{figure}
+
 \label{fig:colors_example}
- \includegraphics[width=\columnwidth]{Fig_2_Ivezic_2003_200000_sources.png}
- \caption{A color-magnitude plot, analogous to Figure 2 from Ivezi\'c+2003 . We use only 200 000 sources, corrected for galactic extinction,  plotting the median photometry over all epochs only for sources where median flux is not negative. }
+\includegraphics[width=1\textwidth]{Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png}
+\caption{A color-magnitude plot, reproducing the results of Sesar+2010 , Fig.23 .  We show here only NCSA-processed sources, which is why certain RA ranges are omitted or have less sources. We only select sources with \verb|extendedness=0| parameter (stars).  The scale is showing the $\log_10$ of count. All sources have their  colors corrected for extinction. On first two panels the features of Sagittarius Stream are clearly visible.}
+
 \end{figure}
+\end{frame}
+
+\begin{figure}
+\label{fig:coadds_ext}
+ \includegraphics[width=\columnwidth]{Extendedness_coadd_data_16520093_srcs_lim.png}
+ \caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness| parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact. }
+\end{figure}
+
+
+\begin{figure}
+\label{fig:coadds_ext_hist}
+ \includegraphics[width=\textwidth]{Extendedness_coadd_histograms.png}
+ \caption{The histograms show the count of sources in 5 magnitude bins, corresponding to the vertical cut through Fig.~\ref{fig:coadds_ext}. It helps to verify how well can the extended and compact sources be separated based solely on the iPsfMag-iModelMag}
+\end{figure}
+
+
+
+
+
 
 \section{Conclusions}
 \label{sec:conclusions}
