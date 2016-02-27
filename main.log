@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  25 FEB 2016 11:23
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  26 FEB 2016 18:58
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -473,7 +473,7 @@ Underfull \hbox (badness 1107) in paragraph at lines 128--129
 e-dian flux and col-ors
  []
 
-<Extendedness_coadd_data_16520093_srcs_lim.png, id=52, 578.16pt x 433.62pt>
+<Extendedness_coadd_data_16520093_srcs_lim.png, id=53, 578.16pt x 433.62pt>
 File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
 <use Extendedness_coadd_data_16520093_srcs_lim.png>
@@ -481,14 +481,14 @@ File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
  (./main-1.cpt)
 (./main-1.cpt)
-<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=53, 1300.86pt x 433.62pt>
+<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=54, 1300.86pt x 433.62pt>
 File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
 
 <use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
 \openout3 = `main-2.cpt'.
 
  (./main-2.cpt)
-(./main-2.cpt) <Extendedness_coadd_histograms.png, id=54, 867.24pt x 578.16pt>
+(./main-2.cpt) <Extendedness_coadd_histograms.png, id=55, 867.24pt x 578.16pt>
 File: Extendedness_coadd_histograms.png Graphic file (type png)
 
 <use Extendedness_coadd_histograms.png> [2pdfTeX warning (ext4): destination wi
@@ -515,7 +515,7 @@ dedness_coadd_histograms.png>] (./main.aux) )
 Here is how much of TeX's memory you used:
  4958 strings out of 256216
  62860 string characters out of 1917073
- 127256 words of memory out of 1500000
+ 128256 words of memory out of 1500000
  8042 multiletter control sequences out of 10000+200000
  82533 words of font info for 178 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
@@ -537,13 +537,13 @@ pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf/fonts/t
 ype1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb><
 /usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr/share/texmf/fonts/type
 1/bluesky/cm/cmti8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt8.pfb></usr
-/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/urw
-/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/
-texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on main.pdf (3 pages, 549949 bytes).
+/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/hoe
+kwater/rsfs/rsfs10.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/
+share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/t
+imes/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (3 pages, 552982 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
+ 153 PDF objects out of 1000 (max. 8388607)
  13 named destinations out of 1000 (max. 131072)
  64 words of extra memory for PDF output out of 10000 (max. 10000000)
 
