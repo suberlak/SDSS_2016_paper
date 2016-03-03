@@ -113,8 +113,38 @@ The data were coadded, and all objects detected in the i-band coadds were assign
 Forced photometry was performed in u,g,r,i,z  on the individual epoch images (NOT difference imaging),  in locations specified by i-band coadds. (DIFFERENCE imaging is when photometry is done on  coadd - individual-epoch-image) . Therefore in some cases the flux reported for a given aperture is negative, because after background subtraction noise oscillates around 0, and when it is scaled up,  it can have negative values. [stored in rawDataFPSplit ]  The background in the  optical bands is bright, and if we assume that the measured number of bacground counts oscillates around the value $B_{0}$, then the measured background count $B$  is distributed as  a Gaussian of width $\sigma_{B}$ :   $B-B_{0}  ~  \mathcal{N}(0,\sigma_{B})$. The noise is Poissonian, i.e. depends on  the number of counts, and since for optical mesaurements the number of counts is large,  $\sigma_{B} = \sqrt {B}$. On a 4kx4k  CCD, with 16 Mpix, $5\sigma$ (corresponding  to  1 false detection in a million), we would expect about 16 false detections.  
 Now considering the distribution of the probability (likelihood) of flux measurement   $L(F|data)$, for bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources the probability, centered around the $F_{S}$, is much wider, so that there is a nonzero probability of negative flux measurement. A Bayesian  way to address this issue is to impose the prior $p(F)$, since we understand that physically flux cannot be negative, so that the posterior probability $p(F|data) \propto L(F|data) p(F)$. A simple flat prior, being 0 for $F<0$ and 1 otherwise,  would not affect the measured $F_S$ for bright sources, but for faint sources it would move the distribution (posterior) to be above zero flux. This would be the upper limit on the flux of that source.  Therefore we decided to apply the Bayesian prior  in case where  $ \langle F_{L} \rangle  < k \sigma>$, with $k=2$ ( $2 \sigma$ corresponds to $2\%$ probability of $F_{L} < 0$ ). 
 
+\subsection{Faint sources}
+
+
 To test our method we generate fiducial lightcurves (DRW / sinusoidal / ...), with a uniform sampling ($N=100-1000$). Based on the generated flux ($F_{true}$) we define $5\sigma$ level as the robust 25-th percentile (or median) of the $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we defined $F_{obs}$ as $F_{true} + F_{noise}$, with the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ added to each point. 
-If $F_{L}$ is a normalized Gaussian  likelihood associated with $i-th$ measurement: $F_{L,i} = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$, then  each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle F_{L} \rangle$. If the measurement was $0$ and $\sigma_{F} = 1$, then  $F_{L} = \mathcal{N}(\mu=0,\sigma=1)$, then  $\int_{1} ^{\infty} {F_{L}} \approx 0.17  \int_{-\infty}^{\infty}{F_{L}} $.      For each generated point $F_{obs}$  we consider this likelihood, and calculate the area $A = \int_{x^{*}}^{\infty} {F_{L}}$, where   $x^{*} = \langle F_{L} \rangle / \sigma_{F} =  F_{obs} / \sigma_{F}$. In this way we define $x_{B}$ as a  point where the $ \int_{x_{B}} ^{\infty} {F_{L}}= 0.05 A$  . Then  we estimate the upper limit on our measurement  as  $F_{faint} ^ {upper} = (x_{B} + x^{*}) \, \sigma_{F}$
+If $p(F)$ is a  Gaussian  likelihood associated with $i-th$ measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$, then  each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
+
+\begin{equation}
+p(F) = \frac{1}{\sqrt{2  \pi \sigma^{2}}} \exp{ \left(-\frac{(F-\mu)^{2}}{2\sigma^{2}}\right)}
+\end{equation}
+
+ If the measurement was $0$ and $\sigma_{F} = 1$, then  $F_{L} = \mathcal{N}(\mu=0,\sigma=1)$, then  $\int_{1} ^{\infty} {F_{L}} \approx 0.17  \int_{-\infty}^{\infty}{F_{L}} $.     
+
+ For each generated point $F_{obs}$  we consider $p(F)$.  After imposing the Bayesian prior it becomes a truncated Gaussian, centered on $F_{obs}^{i}$, with a width $\sigma_F$. Thus for truncated $p(F)$  the mean is not $F_{obs}^{i}$, but can be defined as 
+
+\begin{equation}
+F_{mean} = \int _{0} ^ {\infty} {F p(F) dF}
+\end{equation} 
+
+We can also define the median as  
+
+\begin{equation}
+\int _{0} ^ {F_{median}} {p(F) dF} = \int _{F_{median}} ^ {\infty} {p(F) dF}
+\end{equation} 
+
+Finally, for a Gaussian distribution the area contained between $\mu \pm \sigma$ is $95.5 \%$ of the total area under the curve. Thus for the truncated Gaussian we define the  $2 \sigma$ level as: 
+
+\begin{equation}
+\int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF}
+\end{equation}
+
+
+and calculate the area $A = \int_{x^{*}}^{\infty} {F_{L}}$, where   $x^{*} = \langle F_{L} \rangle / \sigma_{F} =  F_{obs} / \sigma_{F}$. In this way we define $x_{B}$ as a  point where the $ \int_{x_{B}} ^{\infty} {F_{L}}= 0.05 A$  . Then  we estimate the upper limit on our measurement  as  $F_{faint} ^ {upper} = (x_{B} + x^{*}) \, \sigma_{F}$
 
 
 
