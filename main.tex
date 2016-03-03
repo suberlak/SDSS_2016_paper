@@ -45,9 +45,22 @@
 \usepackage{graphicx}	% Including figure files
 \usepackage{amsmath}	% Advanced maths commands
 \usepackage{amssymb}	% Extra maths symbols
+\usepackage{savesym}  % prevent symbol conflicts
+\savesymbol{sf}
+%\generate{%
+%  \file{breqn.sty}{\nopreamble\from{breqn.dtx}{breqn.sty}}%
+%}
+%\usepackage{breqn} % automatic breaking equation 
 %\usepackage{fancyvrb}
 %\VerbatimFootnotes
 \usepackage{cprotect}  % to allow verb in caption 
+\DeclareMathOperator\erfc{erfc}
+\DeclareMathOperator\erf{erf}
+\DeclareMathOperator\cdf{cdf}
+\DeclareMathOperator\sf{sf}
+\DeclareMathOperator\isf{isf}
+\DeclareMathOperator\ppf{ppf}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
@@ -111,43 +124,111 @@ All epochs (individual images) were background-subtracted, and then scaled from 
 The data were coadded, and all objects detected in the i-band coadds were assigned a deepSourceId (== objectId). For star-galaxy separation, the entire clump was considered as one parent source (with single ParentSourceId). For an object which is a parent (eg. a galaxy), ParentSourceId is null.  This amounts to $~40$ milion  i-band detections down to $3 \, \sigma$.  $8$ million of those are brighter than $23^{rd}$ mag. Thus the total number of photometric measurements is : ($40$  million i-band detections) x ($80$ epochs ) x ($5$ filters) = $~16$ billion measurements, including   ($8$ million i-band detections i < 23) x ($80$ epochs) x ($5$ filters ) = $~3$ billion measurements brighter than $23^{rd}$ mag.
 
 Forced photometry was performed in u,g,r,i,z  on the individual epoch images (NOT difference imaging),  in locations specified by i-band coadds. (DIFFERENCE imaging is when photometry is done on  coadd - individual-epoch-image) . Therefore in some cases the flux reported for a given aperture is negative, because after background subtraction noise oscillates around 0, and when it is scaled up,  it can have negative values. [stored in rawDataFPSplit ]  The background in the  optical bands is bright, and if we assume that the measured number of bacground counts oscillates around the value $B_{0}$, then the measured background count $B$  is distributed as  a Gaussian of width $\sigma_{B}$ :   $B-B_{0}  ~  \mathcal{N}(0,\sigma_{B})$. The noise is Poissonian, i.e. depends on  the number of counts, and since for optical mesaurements the number of counts is large,  $\sigma_{B} = \sqrt {B}$. On a 4kx4k  CCD, with 16 Mpix, $5\sigma$ (corresponding  to  1 false detection in a million), we would expect about 16 false detections.  
-Now considering the distribution of the probability (likelihood) of flux measurement   $L(F|data)$, for bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources the probability, centered around the $F_{S}$, is much wider, so that there is a nonzero probability of negative flux measurement. A Bayesian  way to address this issue is to impose the prior $p(F)$, since we understand that physically flux cannot be negative, so that the posterior probability $p(F|data) \propto L(F|data) p(F)$. A simple flat prior, being 0 for $F<0$ and 1 otherwise,  would not affect the measured $F_S$ for bright sources, but for faint sources it would move the distribution (posterior) to be above zero flux. This would be the upper limit on the flux of that source.  Therefore we decided to apply the Bayesian prior  in case where  $ \langle F_{L} \rangle  < k \sigma>$, with $k=2$ ( $2 \sigma$ corresponds to $2\%$ probability of $F_{L} < 0$ ). 
+Now considering the distribution of the probability (likelihood) of flux measurement   $L(F|data)$, for bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources the probability, centered around the $F_{S}$, is much wider, so that there is a nonzero probability of negative flux measurement. A Bayesian  way to address this issue is to impose the prior $p(F)$, since we understand that physically flux cannot be negative, so that the posterior probability $p(F|data) \propto L(F|data) p(F)$. A simple flat prior, being 0 for $F<0$ and 1 otherwise,  would not affect the measured $F_S$ for bright sources, but for faint sources it would move the distribution (posterior) to be above zero flux. This would be the upper limit on the flux of that source.  Therefore we decided to apply the Bayesian prior  in case where  $ \langle F_{L} \rangle  < k \sigma$, with $k=2$ ( for a Gaussian likelihood this  corresponds to $2\%$ probability of $F_{L} < 0$ ). 
 
 \subsection{Faint sources}
 
 
-To test our method we generate fiducial lightcurves (DRW / sinusoidal / ...), with a uniform sampling ($N=100-1000$). Based on the generated flux ($F_{true}$) we define $5\sigma$ level as the robust 25-th percentile (or median) of the $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we defined $F_{obs}$ as $F_{true} + F_{noise}$, with the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ added to each point. 
-If $p(F)$ is a  Gaussian  likelihood associated with $i-th$ measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$, then  each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
+To test our method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we define $F_{obs} = F_{true} + F_{noise}$, where the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ was added to each point. 
+For a weak signal, defined as $F_{obs}^{i} < 2 \sigma{F}$, we consider $p(F)$  - a  Gaussian  likelihood associated with $i$-th measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$. Each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
 
 \begin{equation}
 p(F) = \frac{1}{\sqrt{2  \pi \sigma^{2}}} \exp{ \left(-\frac{(F-\mu)^{2}}{2\sigma^{2}}\right)}
 \end{equation}
 
- If the measurement was $0$ and $\sigma_{F} = 1$, then  $F_{L} = \mathcal{N}(\mu=0,\sigma=1)$, then  $\int_{1} ^{\infty} {F_{L}} \approx 0.17  \int_{-\infty}^{\infty}{F_{L}} $.     
-
- For each generated point $F_{obs}$  we consider $p(F)$.  After imposing the Bayesian prior it becomes a truncated Gaussian, centered on $F_{obs}^{i}$, with a width $\sigma_F$. Thus for truncated $p(F)$  the mean is not $F_{obs}^{i}$, but can be defined as 
+ After imposing the Bayesian uniform prior $p(F)$ becomes a truncated Gaussian (without the negative part), centered on $F_{obs}^{i}$, with a width $\sigma_F$. Thus for the truncated $p(F)$  the mean ceases to be $F_{obs}^{i}$, but it can be defined as 
 
 \begin{equation}
 F_{mean} = \int _{0} ^ {\infty} {F p(F) dF}
 \end{equation} 
 
-We can also define the median as  
+We also define the median as  
 
 \begin{equation}
 \int _{0} ^ {F_{median}} {p(F) dF} = \int _{F_{median}} ^ {\infty} {p(F) dF}
 \end{equation} 
 
-Finally, for a Gaussian distribution the area contained between $\mu \pm \sigma$ is $95.5 \%$ of the total area under the curve. Thus for the truncated Gaussian we define the  $2 \sigma$ level as: 
+Finally, since for a Gaussian distribution the area contained between $\mu \pm \sigma$ is $95.5 \%$ of the total area under the curve, for the truncated Gaussian we define the  $2 \sigma$ level as  two areas  $B = 0.05 A$, or : 
 
 \begin{equation}
-\int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF}
+\int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF} 
+\end{equation}
+
+Fro the mean,  we can calculate it as 
+
+
+\begin{multline}
+F_{mean} = \int _{0} ^ {\infty} {\frac{F}{\sqrt{2\pi\sigma^{2}}} \exp{\left(-\frac{(F-\mu)^{2}}{2\sigma^{2}}\right)} } = \\  \frac{\sigma}{\sqrt{2 \pi}} \exp{-\left( \frac{F_{obs}}{\sigma\sqrt{2}} \right) ^{2}} + \frac{F_{obs}}{2} \erfc{\left( \frac{F_{obs}}{\sigma\sqrt{2}}\right)}
+\end{multline}
+
+using a suitable subsitution, and recognizing that
+
+\begin{equation}
+\erfc = \int_{t_{0}}^{\infty}{\frac{2}{\sqrt{\pi}} e^{-t^2}}
+\end{equation}
+
+is a complementary error function, related to the error function as $\erfc(x) = 1-\erf(x)$.
+ 
+To find the median and the $2\sigma$ level we transform form $F$ space to $x$ space to $z$ space, where $x = F / \sigma_{F}$ (scale by $\sigma_{F}$), and $z = x - x_{obs}$  (shift by $x_{obs} = F_{obs} / \sigma_{F}$).  Thus $p(x) \sim \mathcal{N}(x_{obs},1)$ and  $p(z) \sim \mathcal{N}(0,1)$.
+
+In $z$-space, the median from 
+
+\begin{equation}
+\int_{0}^{x_{med}} {p(x)dx} = \int_{x_{med}}^{\infty} {p(x)dx}
+\end{equation}
+ 
+becomes 
+
+\begin{equation}
+\int_{x_{0}}^{z_{med}}{p(z)dz} = \int_{z_{med}}^{\infty}{p(z)dz}
+\end{equation}
+
+with 
+
+\begin{equation}
+    x_{0}=
+    \begin{cases}
+      -x_{obs}, & \text{if}\ x_{obs} > 0 \\
+      x_{obs}, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+This expression for $z_{med}$ can be evaluated : rhs is  a survival function ($\sf$) = 1 - cumulative density function ($\cdf$) : 
+
+\begin{equation}
+\int_{z_{med}}^{\infty}{p(z)dz} = \sf(z_{med})
+\end{equation}
+
+and the lhs, assuming $z_{med} > x_{0}$, is :
+
+\begin{multline}
+\int_{x_{0}}^{z_{med}}{p(z)dz} = \int_{-\infty}^{z_{med}}{p(z)dz} - \int_{-\infty}^{x_{0}}{p(z)dz} = \cdf(z_{med}) - \cdf(x_{0})
+\end{multline}
+
+Rearranging, and using the percent point function ($\ppf$) - the inverse of the $\cdf$, we find:
+
+\begin{equation}
+z_{med} = \ppf \left( \frac{1+\cdf(x_{0})}{2} \right)
+\end{equation}
+
+and transforming back to $F$ space: 
+
+\begin{equation}
+F_{med} = F_{obs} + \sigma_{F} \, \ppf \left( \frac{1+\cdf(x_{0})}{2} \right)
+\end{equation}
+
+with $x_{0}$ and $x_{obs}$ as above.  
+
+In $z$  space , the $2\sigma$ areas  $A$ and $B$ are :
+
+$\text{A} = \sf(x_{0})$ and $\text{B} = \sf(z_{B})$, so to find  $z_{B}$ we use the  inverse survival function $\isf$ : $z_{B} = \isf(0.05 \text{A})$. Thus transforming back to $F$-space we have:
+
+\begin{equation}
+F_{2\sigma} = F_{obs} + \sigma_{F} \left(\, \isf (\, 0.05 \sf (x_{0})  \right)
 \end{equation}
 
 
-and calculate the area $A = \int_{x^{*}}^{\infty} {F_{L}}$, where   $x^{*} = \langle F_{L} \rangle / \sigma_{F} =  F_{obs} / \sigma_{F}$. In this way we define $x_{B}$ as a  point where the $ \int_{x_{B}} ^{\infty} {F_{L}}= 0.05 A$  . Then  we estimate the upper limit on our measurement  as  $F_{faint} ^ {upper} = (x_{B} + x^{*}) \, \sigma_{F}$
-
-
-
+\subsection{Photometric colors}
 
 The average brightness of an object in  a given filter can be found in two ways. The median of the forced photometry values (over all epochs, including the negative fluxes)   will better reflect the actual brightness of a variable source. This may mean that the median is negative, i.e. the median flux is negative. Since the magnitude is undefined for negative fluxes, we then revert to the lightcurve, and for each exposure with negative flux we find the zero point magnitude ($m_1$) - the magnitude for a source with a flux of 1 count per sec, different for each exposure.  The zero point magnitude for each exposure with negative flux is calculated from the  Flux of 0 magnitude source,  $F_0$,  as  $m_{1} = 2.5 \log_{10}{F_{0}}$. For that object the new median magnitude in that filter will be the upper limit. 
 
