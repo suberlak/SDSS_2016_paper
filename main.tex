@@ -129,7 +129,7 @@ Now considering the distribution of the probability (likelihood) of flux measure
 \subsection{Faint sources}
 
 
-To test our method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$. Thus we define $F_{obs} = F_{true} + F_{noise}$, where the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ was added to each point. 
+To test our method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$ (in reality, $\sigma$ increases for fainter observations, but this is a good approximation). Thus we define $F_{obs} = F_{true} + F_{noise}$, where the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ was added to each point. 
 For a weak signal, defined as $F_{obs}^{i} < 2 \sigma{F}$, we consider $p(F)$  - a  Gaussian  likelihood associated with $i$-th measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$. Each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
 
 \begin{equation}
@@ -183,15 +183,7 @@ becomes
 \int_{x_{0}}^{z_{med}}{p(z)dz} = \int_{z_{med}}^{\infty}{p(z)dz}
 \end{equation}
 
-with 
-
-\begin{equation}
-    x_{0}=
-    \begin{cases}
-      -x_{obs}, & \text{if}\ x_{obs} > 0 \\
-      x_{obs}, & \text{otherwise}
-    \end{cases}
-\end{equation}
+with  $x_{0}=-x_{obs}$
 
 This expression for $z_{med}$ can be evaluated : rhs is  a survival function ($\sf$) = 1 - cumulative density function ($\cdf$) : 
 
@@ -237,7 +229,7 @@ Thus the median over all detections will be biased (especially for faint sources
 
 Since the reported fluxes are not extinction-corrected, we use a table of E(B-V) in a direction of a given source to correct for the galactic extinction. We use the formula  $x_{corr}  = x_{obs} + A_{x} * E(B-V)$, where $x$ is  u,g,r,i,z , and $A_x$ is 5.155, 3.793, 2.751, 2.086, 1.479  for each filter respectively  [Schlegel 98, Av are for RV = 3.1, also suggested by Eddie Schlafly] 
 
-The SDSS Stripe 82 data was processed in two data centers : NCSA (National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign, IL) and IN2P3  (Institut national de physique nucl\'eaire et de physique des particules in Paris, France). NCSA processed data  with  $-40 \, (+320) < RA < +10 $ and IN2P3 with $ +5 < RA < +55$ degrees. In the NCSA data  there are $16520093$ sources in the coadd photometry (\verb|iCoaddPhotometryAll.csv|), and $16514187$ sources ($5906$ less) in \verb|DeepSourceNCSA_i_lt300.csv|. There are $12373162$ sources with median photometry, matched with E(B-V) data (\verb|medianPhotometry.csv|) , and  of these, $5892054$ brighter than $23$ mag, with calculated median flux and colors (\verb|ugrizMetrics.csv|). 
+The SDSS Stripe 82 data was processed in two data centers : NCSA (National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign, IL) and IN2P3  (Institut national de physique nucl\'eaire et de physique des particules in Paris, France). NCSA processed data  with  $-40 \, (+320) < RA < +10 $ and IN2P3 with $ +5 < RA < +55$ degrees. In the NCSA data  there are $20978391$ sources (\verb|iCoaddAll.csv|). Removing those that overlap with IN2P3, we are left with  $16520093$ sources in the coadd photometry (\verb|iCoaddPhotometryAll.csv|), and $16514187$ sources ($5906$ less) in \verb|DeepSourceNCSA_i_lt300.csv|. There are $12373162$ sources with median photometry, matched with E(B-V) data (\verb|medianPhotometry.csv|) , and  of these, $5892054$ brighter than $23$ mag, with calculated median flux and colors (\verb|ugrizMetrics.csv|). Before individual bands are aggregated into one, we have individual bands treated separately, with metrics calculated for each band, eg. \verb|i_metrics.csv|. In this file we have both annual aggregate metrics and full lightcurve aggregate metrics, including the Butler \& Bloom classifier, which can  for high S/N objects, where it has a good discriminating power. It's advantage over the full DRW analysis for each lightcurve is that by assuming a range of $\tau$, amplitude, expected for a DRW for a QSO, we calculate the likelihood of a given lightcurve belonging to a QSO. 
 
 
 \begin{figure}
