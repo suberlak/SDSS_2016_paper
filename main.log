@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  11 MAR 2016 17:02
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  5 APR 2016 19:43
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -442,13 +442,13 @@ LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
 
 
 ]
-Overfull \hbox (0.54346pt too wide) detected at line 202
+Overfull \hbox (0.54346pt too wide) detected at line 212
  []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
 mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
 OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
  []
 
-<Lightcurve_full_obj_217720894888346422.png, id=76, 433.62pt x 289.08pt>
+<Lightcurve_full_obj_217720894888346422.png, id=80, 433.62pt x 289.08pt>
 File: Lightcurve_full_obj_217720894888346422.png Graphic file (type png)
 
 <use Lightcurve_full_obj_217720894888346422.png>
@@ -459,80 +459,105 @@ File: Lightcurve_full_obj_217720894888346422.png Graphic file (type png)
 has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.254 S
-       ince the reported fluxes are not extinction-corrected, we use a table...
- <./Lightcurve_full_obj_217720894888346422.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 257.
+l.258 
+       <./Lightcurve_full_obj_217720894888346422.png>]
+<Fig_5-8_AstroML_obj_217720894888346446_.png, id=103, 1156.32pt x 289.08pt>
+File: Fig_5-8_AstroML_obj_217720894888346446_.png Graphic file (type png)
 
-
-(/usr/share/texmf/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Underfull \hbox (badness 1107) in paragraph at lines 257--258
-\T1/aer/m/n/9 than $\OT1/ztmcm/m/n/9 23$ \T1/aer/m/n/9 mag, with cal-cu-lated m
-e-dian flux and col-ors
- []
-
-<Extendedness_coadd_data_16520093_srcs_lim.png, id=98, 578.16pt x 433.62pt>
-File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
-
-<use Extendedness_coadd_data_16520093_srcs_lim.png>
+<use Fig_5-8_AstroML_obj_217720894888346446_.png>
 \openout3 = `main-2.cpt'.
 
- (./main-2.cpt)
-(./main-2.cpt)
-<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=99, 1300.86pt x 433.62pt>
-File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
-
-<use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
+ (./main-2.cpt) (./main-2.cpt)
+<Lightcurve_full_seasonal_obj_217720894888346425.png, id=104, 722.7pt x 289.08p
+t>
+File: Lightcurve_full_seasonal_obj_217720894888346425.png Graphic file (type pn
+g)
+ <use Lightcurve_full_seasonal_obj_217720894888346425.png>
 \openout3 = `main-3.cpt'.
 
  (./main-3.cpt)
 (./main-3.cpt)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Font Info:    Try loading font information for T1+aett on input line 333.
 
+ (/usr/share/texmf/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+Underfull \hbox (badness 1107) in paragraph at lines 333--334
+\T1/aer/m/n/9 than $\OT1/ztmcm/m/n/9 23$ \T1/aer/m/n/9 mag, with cal-cu-lated m
+e-dian flux and col-ors
+ []
 
-<Extendedness_coadd_histograms.png, id=100, 867.24pt x 578.16pt>
+<Extendedness_coadd_data_16520093_srcs_lim.png, id=107, 578.16pt x 433.62pt>
+File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
+
+<use Extendedness_coadd_data_16520093_srcs_lim.png>
+\openout3 = `main-4.cpt'.
+
+ (./main-4.cpt)
+(./main-4.cpt)
+<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=108, 1300.86pt x 433.62pt>
+File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
+
+<use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
+\openout3 = `main-5.cpt'.
+
+ (./main-5.cpt)
+(./main-5.cpt)
+<Extendedness_coadd_histograms.png, id=109, 867.24pt x 578.16pt>
 File: Extendedness_coadd_histograms.png Graphic file (type png)
 
-<use Extendedness_coadd_histograms.png>
-Underfull \hbox (badness 1005) in paragraph at lines 306--308
+<use Extendedness_coadd_histograms.png> [3]
+Underfull \hbox (badness 1005) in paragraph at lines 382--384
 \T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
  []
 
-[3pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.326 \bsp
-          	% typesetting comment <./Extendedness_coadd_data_16520093_srcs_lim.p
-ng>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
+Underfull \vbox (badness 1292) has occurred while \output is active []
+
+ [4pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.326 \bsp
-          	% typesetting commentpdfTeX warning (ext4): destination with the sam
-e identifier (name{figure.4}) has been already used, duplicate ignored
+l.404 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.3}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.326 \bsp
-          	% typesetting comment <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.p
-ng> <./Extendedness_coadd_histograms.png>] [5
+l.404 \end{document}
+                     <./Fig_5-8_AstroML_obj_217720894888346446_.png> <./Lightcu
+rve_full_seasonal_obj_217720894888346425.png>] [5pdfTeX warning (ext4): destina
+tion with the same identifier (name{figure.4}) has been already used, duplicate
+ ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.404 \end{document}
+                    
 
-] (./main.aux) ) 
+ <./Extendedness_coadd_data_16520093_srcs_lim.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+ has been already used, duplicate ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.404 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.404 \end{document}
+                     <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Exten
+dedness_coadd_histograms.png>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 5023 strings out of 256216
- 63669 string characters out of 1917073
- 129527 words of memory out of 1500000
- 8071 multiletter control sequences out of 10000+200000
- 86179 words of font info for 182 fonts, out of 1200000 for 2000
+ 5064 strings out of 256216
+ 64520 string characters out of 1917073
+ 131622 words of memory out of 1500000
+ 8084 multiletter control sequences out of 10000+200000
+ 89129 words of font info for 185 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  32i,15n,34p,1536b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced bu
-t does not exist, replaced by a fixed one
+pdfTeX warning (dest): name{Hfootn
+ote.1} has been referenced but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
 replaced by a fixed one
@@ -548,13 +573,14 @@ pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf/fonts/t
 ype1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb><
 /usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr/share/texmf/fonts/type
 1/bluesky/cm/cmti8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt8.pfb></usr
-/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/hoe
-kwater/rsfs/rsfs10.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/
-share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (5 pages, 590092 bytes).
+/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/blu
+esky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/hoekwater/rsfs/rsfs10.pfb></u
+sr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/ur
+w/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/shar
+e/texmf/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (6 pages, 706080 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 131072)
- 109 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 131072)
+ 127 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -154,24 +154,34 @@ Finally, since for a Gaussian distribution the area contained between $\mu \pm \
 \int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF} 
 \end{equation}
 
-From the mean,  we can calculate it as 
+Using our definition, the mean is :  
 
 
 \begin{multline}
-F_{mean} = \int _{0} ^ {\infty} {\frac{F}{\sqrt{2\pi\sigma_{F}^{2}}} \exp{\left(-\frac{(F-\mu)^{2}}{2\sigma_{F}^{2}}\right)} } = \\  \frac{\sigma_{F}}{\sqrt{2 \pi}} \exp{\left(- \frac{F_{obs}^{2}}{2\sigma_{F}^{2}} \right)} + \frac{F_{obs}}{2} \erfc{\left( \frac{F_{obs}}{\sigma_{F}\sqrt{2}}\right)}
+F_{mean} = \int _{0} ^ {\infty} {\frac{F}{\sqrt{2\pi\sigma_{F}^{2}}} \exp{\left(-\frac{(F-F_{obs})^{2}}{2\sigma_{F}^{2}}\right)} } = \\  \frac{\sigma_{F}}{\sqrt{2 \pi}} \exp{\left(- \frac{F_{obs}^{2}}{2\sigma_{F}^{2}} \right)} + F_{obs} \sf{\left( \frac{-F_{obs}}{\sigma_{F}}\right)}
 \end{multline}
 
-using a suitable subsitution, and recognizing that
+where we used $z = (F-F_{obs}) /\sigma_F $ , and noticed that
 
 \begin{equation}
-\erfc = \int_{t_{0}}^{\infty}{\frac{2}{\sqrt{\pi}} e^{-t^2} dt}
+\int_{z_{0}}^{\infty}{\frac{1}{\sqrt{2\pi}} e^{-z^2 / 2 } dz} = \text{CCDF}(z_{0}) = 1-\text{CDF}(z_{0}) = \sf{(z_{0})}
 \end{equation}
 
-is a complementary error function, related to the error function as $\erfc(x) = 1-\erf(x)$.
+is a complementary cumulative distribution function (CCDF), also known as the survival function ($\sf$). 
 
 \bigskip
 
-To find the median and the $2\sigma$ level we transform form $F$ space to $x$ space to $z$ space, where $x = F / \sigma_{F}$ (scale by $\sigma_{F}$), and $z = x - x_{obs}$  (shift by $x_{obs} = F_{obs} / \sigma_{F}$).  Thus $p(x) \sim \mathcal{N}(x_{obs},1)$ and  $p(z) \sim \mathcal{N}(0,1)$.
+To find the median and the $2\sigma$ level we transform from $F$ space to $x$ space , scaling by  $\sigma_{F}$, so that $x = F / \sigma_{F}$ , and thus the likelihood $p(x) \sim \mathcal{N}(x_{obs},1)$ is :
+\begin{equation}
+p(x) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{(x-x_{obs})^{2}}{2}\right)}
+\end{equation}
+
+Then we transform from $x$ to $z$ space, with  a translation by $x_{obs} = F_{obs} / \sigma_{F}$ :  $z = x - x_{obs}$  , so that now  $p(z) \sim \mathcal{N}(0,1)$:
+\begin{equation}
+p(z) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{(z)^{2}}{2}\right)}
+\end{equation}
+
+
 
 In $z$-space, the median from 
 
@@ -228,18 +238,94 @@ F_{2\sigma} = F_{obs} + \sigma_{F} \left(\, \isf (\, 0.05 \sf (x_{0})  \right)
 
 \subsection{Photometric colors}
 
-Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling. Observations conducted prior to March 2006 were part of SDSS I-II, which had more sparse sampling than SDSS-III, part of the SDSS Supernova Survey, that started  earlier that year (see Fig.).  Thus for a given object we average all observations prior to March 2006, and annual averages for all subsequent years. We calculate weighted mean and the rms as 
+Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling. Observations conducted prior to September 2005 were part of SDSS I-II, which had more sparse sampling than SDSS-III. September 1 - November 30 of 2005-2007 marks the SDSS Supernova Survey (see Fig.~\ref{fig:lc_example}).  
+
+\begin{figure}
+\label{fig:lc_example}
+ \includegraphics[width=\columnwidth]{Lightcurve_full_obj_217720894888346422.png}
+ \cprotect\caption{A plot showing an example lightcurve for an object id 217720894888346422. Jan 1st of each year (blue),  August 1st of 2005 (orange) and August 1st of each subsequent year (red) is indicated by vertical dashed lines. Observations prior to August 1st of 2005 have sparser cadence, whereas those after that date have more frequent observations.  This is due to the SDSS-III Supernova Survey which begun  Sept 1st 2005.  All points to the left of August 1st 2005 (orange line) are averaged together.  Points to the right of August 1st 2005 are seasonally averaged. }
+\end{figure}
+
+16
+
+Thus for a given object we average all sparser observations prior before SDSS-III, and calculate annual averages for all subsequent years. We calculate weighted mean and the rms as 
 \begin{equation}
-$<F>$ = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
+<F> = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
 \sigma_{<F>} = \left( \sum{w_{i}}\right) ^{-1/2} 
 \end{equation}
-with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate median and the robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $, based on the interquartile range. Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $rms$) or ($median$, $\sigma_{G}$). We compare the two options by calculating  $\chi_{2}$  for each set of points: 
+
+with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate the robust  median and the median error : $\sqrt{\pi / 2} \, \sigma_{F}$  [ robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $ , based on the interquartile range] . Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $meanErr$) or ($median$, $medianErr$). We look for evidence of intrinsic variability by calculating   $\chi^{2}$ for mean, 
 
 \begin{equation}
-\chi^{2} = \frac{1}{N-1}\sum{\left( \frac{F_{i} - \overline{F} }{\sigma_{i}} \right) ^{2}}
-\end{equation}. 
+\chi^{2}_{dof} = \frac{1}{N-1}\sum{\left( \frac{F_{i} - <F>} {\sigma_{i}} \right) ^{2}}
+\end{equation}
+
+and the robust version based on the median: $\chi^{2}_{R} = 0.7414 (Z_{75\%} - Z_{25\%} )$ with  $Z=(F_{i} - median) / \sigma_{i}$ . 
+
+We further analyze the seasonally-averaged lightcurves by calculating $\sigma_{0}$ (the approximate value), and $\sigma_{full}$, following AstroML Fig.5.8. 
+$\sigma_{0}$ is found in the following way: if by ($x_{i}, e_{i}$) we denote the measurement and associated error (for seasonally averaged lightcurves, $x_{i}$ is $F_{i}$, and $e_{i}$ is $\sigma_{i}$), then the bootstrapped sampling of ($x_{i}, e_{i}$) is sampling each vector at a number of N random indices (eg. N=1000). Thus instead of $x_{i}$ which may only have 10 measurements, we have $x_{i,boot}$ which has 1000 random samples. Median is the 50-th percentile of any sample.  Following [Ivezic+2014], chapter 5, we use a sample median to estimate $\mu_{0} = median(x_{i,boot})$, and an interquartile range width estimator to estimate the standard deviation : $\sigma_{G} =0.7413 (X_{75\%} - X_{25\%}) $ for $X = x_{i,boot}$.
+With the median error $e_{50} = median(e_{i,boot})$, we estimate $\sigma_{0}$ as : 
+
+\begin{equation}
+\sigma_{0} = ( variance_{approx} )^{1/2} = (\zeta^{2} \cdot \sigma_{G}^{2} - e_{50} ^ {2})^{1/2}
+\end{equation}
+
+where 
+
+\begin{equation}
+\zeta = \frac{median(\widetilde{\sigma}_{i})} {mean(\widetilde{\sigma}_{i})}
+\end{equation}
+
+and 
+
+\begin{equation}
+\widetilde{\sigma}_{i} =  ( \widetilde{variance} )^{1/2} = ( \sigma_{G}^{2} + e_{i}^{2} - e_{50}^{2} )^{1/2}
+\end{equation}
+
+
+For the marginalized $\sigma_{full}$, we calculate logarithm of the posterior probability distribution for the grid of $\mu$ and $\sigma$ values as:
+
+\begin{equation}
+\log{L} = -0.5 \sum \left( \ln(\sigma^{2}+e_{i}^{2}) + \frac{(x_{i}-\mu)^{2}}{(\sigma^{2}+e_{i}^{2})} \right)
+\end{equation}
+
+We shift the maximum value of logL by subtracting the maximum value of logL, thus calculating the likelihood : 
+
+\begin{equation}
+L = e^{\log{L} - max(\log{L})}
+\end{equation}
+
+We then marginalize over $\mu$ or $\sigma$ : 
+
+\begin{equation}
+p(\sigma) = \sum_{\mu}(L_{\sigma,\mu}) \\
+p(\mu) = \sum_{\sigma}(L_{\sigma,\mu})
+\end{equation}
+
+and normalize the probability :
+
+\begin{equation}
+p_{norm}(\sigma) = \frac{p(\sigma)}{ \int {p(\sigma) \text{d}\sigma}} \\ 
+p_{norm}(\mu) = \frac{p(\mu)} {\int {p(\mu) \text{d}\mu} }
+\end{equation}
+
+\begin{figure*}
+\label{fig:sigma_example}
+\includegraphics[width=\textwidth]{Fig_5-8_AstroML_obj_217720894888346446_.png}
+\cprotect\caption{A plot equivalent to AstroML Fig 5.7 and 5.8 for seasonally-averaged points ($x_{i}, e_{i}$) for an object 217720894888346446. The solid lines show marginalized posterior pdfs for $\mu$ (left) and $\sigma$ (middle). The dashed histograms show the distributions of approximate estimates for $\mu$ and $\sigma$, for 10,000 bootstrap resamples of the same data set. The right panel shows the logarithm of the posterior probability density function for $\mu$ and $\sigma$.   }
+\end{figure*}
+
+
+\begin{figure*}
+\label{fig:lc_example_seasonal}
+ \includegraphics[width=\textwidth]{Lightcurve_full_seasonal_obj_217720894888346425.png}
+ \cprotect\caption{A plot showing an outcome of seasonal averaging for an object id 217720894888346425. The left panel (red dots) shows  (mean, meanErr),  and the right panel (orange) shows (median,medianErr), instead of seasonal points (blue). Vertical dashed lines as on Fig.~\ref{fig:lc_example}}
+\end{figure*}
+
 
 The resulting average flux is converted to magnitude, and the color is  $c = m_{x}-m_{y}$, with combined errors of band lightcurves added in quadrature
+
+\subsection{Extinction Correction}
 
 Since the reported fluxes are not extinction-corrected, we use a table of E(B-V) in a direction of a given source to correct for the galactic extinction. We use the formula  $x_{corr}  = x_{obs} + A_{x} * E(B-V)$, where $x$ is  u,g,r,i,z , and $A_x$ is 5.155, 3.793, 2.751, 2.086, 1.479  for each filter respectively  [Schlegel 98, Av are for RV = 3.1, also suggested by Eddie Schlafly] 
 
