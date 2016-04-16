@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  5 APR 2016 19:43
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  15 APR 2016 17:57
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -413,62 +413,83 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
 
-Underfull \hbox (badness 3333) in paragraph at lines 122--123
+Underfull \hbox (badness 3333) in paragraph at lines 125--126
 []\T1/aer/m/n/9 All epochs (in-di-vid-ual im-ages) were background-
  []
 
 
-Underfull \hbox (badness 2126) in paragraph at lines 122--123
+Underfull \hbox (badness 2126) in paragraph at lines 125--126
 \T1/aer/m/n/9 to fluxes by com-par-ing stan-dard ob-jects against the
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 124.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 124.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 128.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(/usr/share/texmf/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+Underfull \hbox (badness 1067) in paragraph at lines 131--132
+\T1/aer/m/n/9 per-formed forced pho-tom-e-try in all SDSS pho-to-met-ric
+ []
 
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 155.
 
+Underfull \hbox (badness 4353) in paragraph at lines 133--134
+[]\T1/aer/m/n/9 Since an im-age for each epoch is background-
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 137--138
+[]\T1/aer/m/n/9 For each patch the raw lightcurves con-tain the
+ []
+
+
+Underfull \hbox (badness 3503) in paragraph at lines 143--145
+\T1/aer/m/n/9 mean weighted by the []\T1/aett/m/n/9 WVar \T1/aer/m/n/9 - the in
+-verse vari-ance
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 143--145
+\T1/aer/m/n/9 ([]\T1/aett/m/n/9 WeightedMean\T1/aer/m/n/9 ), and the stan-dard 
+de-vi-a-tion weighted
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 143--145
+\T1/aer/m/n/9 by in-verse vari-ance and cor-rected for in-trin-sic scat-ter
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 145.
 
 (/usr/share/texmf/tex/latex/ae/omsaer.fd
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Overfull \hbox (0.54346pt too wide) detected at line 212
- []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
-mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
-OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
- []
-
-<Lightcurve_full_obj_217720894888346422.png, id=80, 433.62pt x 289.08pt>
+<Lightcurve_full_obj_217720894888346422.png, id=103, 433.62pt x 289.08pt>
 File: Lightcurve_full_obj_217720894888346422.png Graphic file (type png)
 
 <use Lightcurve_full_obj_217720894888346422.png>
 \openout3 = `main-1.cpt'.
 
  (./main-1.cpt) (./main-1.cpt)
-[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.258 
-       <./Lightcurve_full_obj_217720894888346422.png>]
-<Fig_5-8_AstroML_obj_217720894888346446_.png, id=103, 1156.32pt x 289.08pt>
+[2]
+<Fig_5-8_AstroML_obj_217720894888346446_.png, id=121, 1156.32pt x 289.08pt>
 File: Fig_5-8_AstroML_obj_217720894888346446_.png Graphic file (type png)
 
 <use Fig_5-8_AstroML_obj_217720894888346446_.png>
 \openout3 = `main-2.cpt'.
 
  (./main-2.cpt) (./main-2.cpt)
-<Lightcurve_full_seasonal_obj_217720894888346425.png, id=104, 722.7pt x 289.08p
+<Lightcurve_full_seasonal_obj_217720894888346425.png, id=124, 722.7pt x 289.08p
 t>
 File: Lightcurve_full_seasonal_obj_217720894888346425.png Graphic file (type pn
 g)
@@ -477,17 +498,7 @@ g)
 
  (./main-3.cpt)
 (./main-3.cpt)
-LaTeX Font Info:    Try loading font information for T1+aett on input line 333.
-
- (/usr/share/texmf/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Underfull \hbox (badness 1107) in paragraph at lines 333--334
-\T1/aer/m/n/9 than $\OT1/ztmcm/m/n/9 23$ \T1/aer/m/n/9 mag, with cal-cu-lated m
-e-dian flux and col-ors
- []
-
-<Extendedness_coadd_data_16520093_srcs_lim.png, id=107, 578.16pt x 433.62pt>
+<Extendedness_coadd_data_16520093_srcs_lim.png, id=127, 578.16pt x 433.62pt>
 File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
 <use Extendedness_coadd_data_16520093_srcs_lim.png>
@@ -495,7 +506,7 @@ File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
  (./main-4.cpt)
 (./main-4.cpt)
-<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=108, 1300.86pt x 433.62pt>
+<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=128, 1300.86pt x 433.62pt>
 File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
 
 <use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
@@ -503,61 +514,90 @@ File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
 
  (./main-5.cpt)
 (./main-5.cpt)
-<Extendedness_coadd_histograms.png, id=109, 867.24pt x 578.16pt>
+<Extendedness_coadd_histograms.png, id=129, 867.24pt x 578.16pt>
 File: Extendedness_coadd_histograms.png Graphic file (type png)
 
-<use Extendedness_coadd_histograms.png> [3]
-Underfull \hbox (badness 1005) in paragraph at lines 382--384
-\T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
+<use Extendedness_coadd_histograms.png>
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
+(hyperref)                removing `\\' on input line 332.
+
+[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.356 \end{equation}
+                     <./Lightcurve_full_obj_217720894888346422.png>]
+Overfull \hbox (0.54346pt too wide) detected at line 391
+ []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
+mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
+OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
  []
 
 
-Underfull \vbox (badness 1292) has occurred while \output is active []
+Underfull \vbox (badness 1303) has occurred while \output is active []
 
  [4pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.404 \end{document}
+l.403 \end{equation}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.3}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.404 \end{document}
+l.403 \end{equation}
                      <./Fig_5-8_AstroML_obj_217720894888346446_.png> <./Lightcu
-rve_full_seasonal_obj_217720894888346425.png>] [5pdfTeX warning (ext4): destina
-tion with the same identifier (name{figure.4}) has been already used, duplicate
- ignored
+rve_full_seasonal_obj_217720894888346425.png>]
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
+(hyperref)                removing `\\' on input line 417.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
+(hyperref)                removing `\\' on input line 473.
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 476--478
+\T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
+(hyperref)                removing `\\' on input line 479.
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.404 \end{document}
-                    
-
- <./Extendedness_coadd_data_16520093_srcs_lim.png>]
+l.483 
+       <./Extendedness_coadd_data_16520093_srcs_lim.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.404 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{figure.6}) has been already used, duplicate ignored
+l.483 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+6}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.404 \end{document}
-                     <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Exten
-dedness_coadd_histograms.png>] (./main.aux) ) 
+l.483 
+       <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Extendedness_coadd_
+histograms.png>] [7
+
+] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 5064 strings out of 256216
- 64520 string characters out of 1917073
- 131622 words of memory out of 1500000
- 8084 multiletter control sequences out of 10000+200000
- 89129 words of font info for 185 fonts, out of 1200000 for 2000
+ 5089 strings out of 256216
+ 64853 string characters out of 1917073
+ 131930 words of memory out of 1500000
+ 8098 multiletter control sequences out of 10000+200000
+ 87265 words of font info for 182 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 32i,15n,34p,1536b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootn
-ote.1} has been referenced but does not exist, replaced by a fixed one
+ 32i,15n,34p,1187b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced bu
+t does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
 replaced by a fixed one
@@ -578,9 +618,9 @@ esky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/hoekwater/rsfs/rsfs10.pfb></u
 sr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/ur
 w/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/shar
 e/texmf/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 706080 bytes).
+Output written on main.pdf (7 pages, 722359 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 131072)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 287 PDF objects out of 1000 (max. 8388607)
+ 63 named destinations out of 1000 (max. 131072)
+ 175 words of extra memory for PDF output out of 10000 (max. 10000000)
 

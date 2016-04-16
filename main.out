@@ -1,10 +1,16 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}
 \BOOKMARK [1][-]{section.2}{Data Analysis}{}
-\BOOKMARK [2][-]{subsection.2.1}{Faint sources}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Photometric colors}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{Extinction Correction}{section.2}
+\BOOKMARK [2][-]{subsection.2.1}{Data Overview}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Source Detection}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Forced Photometry}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Lightcurve Metrics}{section.2}
+\BOOKMARK [2][-]{subsection.2.5}{Faint Sources}{section.2}
+\BOOKMARK [2][-]{subsection.2.6}{Photometric colors}{section.2}
+\BOOKMARK [2][-]{subsection.2.7}{Variability}{section.2}
+\BOOKMARK [2][-]{subsection.2.8}{Extinction Correction}{section.2}
 \BOOKMARK [1][-]{section.3}{Results}{}
 \BOOKMARK [1][-]{section.4}{Conclusions}{}
-\BOOKMARK [1][-]{section.5}{Appendix}{}
-\BOOKMARK [2][-]{subsection.5.1}{How ugriz metrics were made}{section.5}
-\BOOKMARK [2][-]{subsection.5.2}{Zero Flux Magnitudes}{section.5}
+\BOOKMARK [1][-]{section.A1}{ Treatment of faint sources}{}
+\BOOKMARK [1][-]{section.A2}{ Characterizing variability}{}
+\BOOKMARK [1][-]{section.A3}{ Making of ugriz metrics }{}
+\BOOKMARK [1][-]{section.A4}{ Zero Flux Magnitudes }{}
