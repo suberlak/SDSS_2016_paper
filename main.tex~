@@ -172,7 +172,9 @@ For each band we calculate metrics describing the lightcurve behavior for a give
 
 \subsection{Faint Sources}
 \label{sec:faint_sources}
-When performing forced photometry we encounter sources that are very dim ($<2\sigma$) in a single epoch image.  Consider the distribution of the likelihood of flux measurement   $L(F|data)$. For bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, with width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources that have larger measurement uncertainties, the Gaussian likelihood has much wider tails. When a tail extends below zero, it  means that there is a nonzero likelihood of a negative flux measurement, which is unphysical. We address this issue by imposing a Bayesian flat prior  $p(F)=0 $ for $F<0$. Thus the posterior probability is 
+When performing forced photometry we encounter sources that are very dim ($<2\sigma$) in a single epoch image.  Consider the distribution of the likelihood of flux measurement   $L(F|data)$. For bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, with width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources that have larger measurement uncertainties, the Gaussian likelihood has much wider tails. When a tail extends below zero, it  means that there is a nonzero likelihood of a negative flux measurement, which is unphysical.
+
+As an example of prior choice, we consider a sinusoidally varying flux.  If the flux of an object over many epochs is expected to vary in a sinusoidal fashion, i.e. $F(t) = F_{min}+ sin(t)$, the probability of a given  flux measurement is a cosine, from $F_{min}$ to $F_{max}$. Thus, if no prior measurements were taken, we can confidently say that the flux of our object is most likely  $(F_{min} + F_{max}) /  2$, i.e. at the peak of the cosine likelihood function. However, as soon as one measurement is taken of $(F_{i},e_{i})$, the probability distribution of a flux of an object at that epoch becomes a convolution of our cosine prior information with the Gaussian curve of width $e_{i}$, centered on $F_{i}$ (assuming Gaussian errors). However, without any a-priori information about the variability pattern of the considered object, the least informative Bayesian prior we can impose is a flat one : $p(F)=0 $ for $F<0$, and $1$ elsewhere. Thus the posterior probability is 
 
 \begin{equation}
 p(F|data) \propto L(F|data) p(F)
@@ -192,9 +194,10 @@ p(F) = \frac{1}{\sqrt{2  \pi \sigma_{F}^{2}}} \exp{ \left(-\frac{(F-\mu)^{2}}{2\
  After imposing the Bayesian uniform prior $p(F)$ becomes a truncated Gaussian (without the negative part), centered on $F_{obs}^{i}$, with a width $\sigma_F$. Thus for the truncated $p(F)$  the mean ceases to be $F_{obs}^{i}$, but it can be defined as 
 
 \begin{equation}
-F_{mean} = \int _{0} ^ {\infty} {F p(F) dF}
+F_{mean} = \frac{\int _{0} ^ {\infty}{F p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}}
 \end{equation} 
-
+remembering to normalize by  integrating over the Gaussian likelihood.
+ 
 We also define the median as  
 
 \begin{equation}
@@ -206,6 +209,8 @@ Finally, since for a Gaussian distribution the area contained between $\mu \pm \
 \begin{equation}
 \int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF} 
 \end{equation}
+
+In those cases, normalization constant on both sides of equations cancels out. 
 
 (see Appendix )
 
@@ -265,7 +270,7 @@ Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\ch
 \begin{figure*}
 \label{fig:sigma_example}
 \includegraphics[width=\textwidth]{Fig_5-8_AstroML_obj_217720894888346446_.png}
-\cprotect\caption{Two-step approach to finding $\mu$ and $\sigma$ via $\mu_{0}$ and $\sigma_{0}$ for an object 217720894888346446. In this calculation we use raw psf flux, prior to employing the faint source treatment outlined in Section~\ref{sec:faint_sources}. On the left and middle panels,  solid lines trace marginalized posterior pdfs for $\mu$ and $\sigma$ , while dashed lines depict histogram distributions of 10,000 bootstrap resamples for $\mu_{0}$ and $\sigma_{0}$. The right panel shows the logarithm of the posterior probability density function for $\mu$ and $\sigma$.}
+\cprotect\caption{Two-step approach to finding $\mu$ and $\sigma$ via $\mu_{0}$ and $\sigma_{0}$ for an object 217720894888346446. In this calculation we use raw psf flux, before employing the faint source treatment outlined in Section~\ref{sec:faint_sources}. On the left and middle panels,  solid lines trace marginalized posterior pdfs for $\mu$ and $\sigma$ , while dashed lines depict histogram distributions of 10,000 bootstrap resamples for $\mu_{0}$ and $\sigma_{0}$. The right panel shows the logarithm of the posterior probability density function for $\mu$ and $\sigma$.}
 \end{figure*}
 
 
@@ -336,17 +341,29 @@ The SDSS is managed by the Astrophysical Research Consortium for the Participati
 Using our definition, the mean is :  
 
 
-\begin{multline}
-F_{mean} = \int _{0} ^ {\infty} {\frac{F}{\sqrt{2\pi\sigma_{F}^{2}}} \exp{\left(-\frac{(F-F_{obs})^{2}}{2\sigma_{F}^{2}}\right)} } = \\  \frac{\sigma_{F}}{\sqrt{2 \pi}} \exp{\left(- \frac{F_{obs}^{2}}{2\sigma_{F}^{2}} \right)} + F_{obs} \sf{\left( \frac{-F_{obs}}{\sigma_{F}}\right)}
-\end{multline}
-
-where we used $z = (F-F_{obs}) /\sigma_F $ , and noticed that
-
 \begin{equation}
-\int_{z_{0}}^{\infty}{\frac{1}{\sqrt{2\pi}} e^{-z^2 / 2 } dz} = \text{CCDF}(z_{0}) = 1-\text{CDF}(z_{0}) = \sf{(z_{0})}
+F_{mean} = \frac{\int _{0} ^ {\infty}{F p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}} = I_{0} / I_{1}
 \end{equation}
 
-is a complementary cumulative  distribution function (CCDF), complementing the CDF - cumulative distribution function, altogether known as the survival function ($\sf$). 
+
+We evaluate 
+
+\begin{multline}
+I_{0}= \int _{0} ^ {\infty} {\frac{F}{\sqrt{2\pi\sigma_{F}^{2}}} \exp{\left(-\frac{(F-F_{obs})^{2}}{2\sigma_{F}^{2}}\right)} }dF = \\  \frac{\sigma_{F}}{\sqrt{2 \pi}} \exp{\left(- \frac{F_{obs}^{2}}{2\sigma_{F}^{2}} \right)} + F_{obs} \sf{\left( \frac{-F_{obs}}{\sigma_{F}}\right)}
+\end{multline}
+
+and 
+
+\begin{equation}
+I_{1} = \int _{0} ^ {\infty}{ p(F) dF} = \int _{0} ^ {\infty} {\frac{\exp{\left(-\frac{(F-F_{obs})^{2}}{2\sigma_{F}^{2}}\right)} }{\sqrt{2\pi\sigma_{F}^{2}}} }dF = \sf{(-F_{obs} / \sigma_{F})}
+\end{equation}
+
+so that 
+\begin{equation}
+x_{mean} = \frac{\exp{(- x_{obs}^{2} / 2 )} }{\sf{(-x_{obs})}\sqrt{2 \pi}} + x_{obs} 
+\end{equation}
+
+where we scaled $F_{obs}$ by  $\sigma_F$  ($F_{mean} = x_{mean} \cdot \sigma_{F}$
 
 \bigskip
 
@@ -402,7 +419,12 @@ and transforming back to $F$ space:
 F_{med} = F_{obs} + \sigma_{F} \, \ppf \left( \frac{1+\cdf(x_{0})}{2} \right)
 \end{equation}
 
-with $x_{0}$ and $x_{obs}$ as above.  
+with $x_{0}$ and $x_{obs}$ as above.  We also normalize this expression by $\int _{0} ^ {\infty}{ p(F) dF}$ and $\sigma_{F}$:
+
+\begin{equation}
+x_{med}^{norm} = x_{obs}
+\end{equation}
+
 
 \bigskip
 

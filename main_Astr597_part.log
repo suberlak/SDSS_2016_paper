@@ -1,8 +1,8 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  19 APR 2016 17:08
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  15 APR 2016 18:00
 entering extended mode
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**main_Astr597_part.tex
+(./main_Astr597_part.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
@@ -287,8 +287,8 @@ Package: suffix 2006/07/15 1.5 Variant command support
 \c@CPT@WriteCount=\count112
 \c@CPT@numB=\count113
 \CPT@commandatend@toks=\toks24
-) (./main.aux)
-\openout1 = `main.aux'.
+) (./main_Astr597_part.aux)
+\openout1 = `main_Astr597_part.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
 LaTeX Font Info:    ... okay on input line 98.
@@ -364,14 +364,14 @@ Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
 )
 LaTeX Info: Redefining \ref on input line 98.
 LaTeX Info: Redefining \pageref on input line 98.
- (./main.out) (./main.out)
+ (./main_Astr597_part.out)
+(./main_Astr597_part.out)
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `main_Astr597_part.out'.
 
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 10
 1.
-
-(/usr/share/texmf/tex/latex/psnfss/ot1ztmcm.fd
+ (/usr/share/texmf/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 10
@@ -414,189 +414,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--105
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 121.
-
-Underfull \hbox (badness 3333) in paragraph at lines 125--126
-[]\T1/aer/m/n/9 All epochs (in-di-vid-ual im-ages) were background-
- []
-
-
-Underfull \hbox (badness 2126) in paragraph at lines 125--126
-\T1/aer/m/n/9 to fluxes by com-par-ing stan-dard ob-jects against the
- []
-
-LaTeX Font Info:    Try loading font information for T1+aett on input line 128.
-
-(/usr/share/texmf/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Underfull \hbox (badness 1067) in paragraph at lines 131--132
-\T1/aer/m/n/9 per-formed forced pho-tom-e-try in all SDSS pho-to-met-ric
- []
-
-
-Underfull \hbox (badness 4353) in paragraph at lines 133--134
-[]\T1/aer/m/n/9 Since an im-age for each epoch is background-
- []
-
-
-Underfull \hbox (badness 3039) in paragraph at lines 137--138
-[]\T1/aer/m/n/9 For each patch the raw lightcurves con-tain the
- []
-
-
-Underfull \hbox (badness 3503) in paragraph at lines 143--145
-\T1/aer/m/n/9 mean weighted by the []\T1/aett/m/n/9 WVar \T1/aer/m/n/9 - the in
--verse vari-ance
- []
-
-
-Underfull \hbox (badness 2478) in paragraph at lines 143--145
-\T1/aer/m/n/9 ([]\T1/aett/m/n/9 WeightedMean\T1/aer/m/n/9 ), and the stan-dard 
-de-vi-a-tion weighted
- []
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 143--145
-\T1/aer/m/n/9 by in-verse vari-ance and cor-rected for in-trin-sic scat-ter
- []
-
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 145.
-
-(/usr/share/texmf/tex/latex/ae/omsaer.fd
-File: omsaer.fd 1999/12/27
-)
-LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-<Lightcurve_full_obj_217720894888346422.png, id=103, 433.62pt x 289.08pt>
-File: Lightcurve_full_obj_217720894888346422.png Graphic file (type png)
-
-<use Lightcurve_full_obj_217720894888346422.png>
-\openout3 = `main-1.cpt'.
-
- (./main-1.cpt) (./main-1.cpt)
-[2]
-<Fig_5-8_AstroML_obj_217720894888346446_.png, id=120, 1156.32pt x 289.08pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
+<Fig_5-8_AstroML_obj_217720894888346446_.png, id=12, 1156.32pt x 289.08pt>
 File: Fig_5-8_AstroML_obj_217720894888346446_.png Graphic file (type png)
 
 <use Fig_5-8_AstroML_obj_217720894888346446_.png>
-\openout3 = `main-2.cpt'.
+\openout3 = `main_Astr597_part-1.cpt'.
 
- (./main-2.cpt) (./main-2.cpt)
-<Lightcurve_full_seasonal_obj_217720894888346425.png, id=123, 722.7pt x 289.08p
-t>
-File: Lightcurve_full_seasonal_obj_217720894888346425.png Graphic file (type pn
-g)
- <use Lightcurve_full_seasonal_obj_217720894888346425.png>
-\openout3 = `main-3.cpt'.
+ (./main_Astr597_part-1.cpt
 
- (./main-3.cpt)
-(./main-3.cpt)
-<Extendedness_coadd_data_16520093_srcs_lim.png, id=126, 578.16pt x 433.62pt>
-File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
+LaTeX Warning: Reference `sec:faint_sources' on page 1 undefined on input line 
+1.
 
-<use Extendedness_coadd_data_16520093_srcs_lim.png>
-\openout3 = `main-4.cpt'.
+) (./main_Astr597_part-1.cpt
 
- (./main-4.cpt)
-(./main-4.cpt)
-<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=127, 1300.86pt x 433.62pt>
-File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
+LaTeX Warning: Reference `sec:faint_sources' on page 1 undefined on input line 
+1.
 
-<use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
-\openout3 = `main-5.cpt'.
+)
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 160.
 
- (./main-5.cpt)
-(./main-5.cpt)
-<Extendedness_coadd_histograms.png, id=128, 867.24pt x 578.16pt>
-File: Extendedness_coadd_histograms.png Graphic file (type png)
-
-<use Extendedness_coadd_histograms.png> [3pdfTeX warning (ext4): destination wi
-th the same identifier (name{figure.1}) has been already used, duplicate ignore
-d
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.337 \section
-              {\\ Treatment of faint sources} <./Lightcurve_full_obj_2177208948
-88346422.png>]
-
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 337.
-
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.378 \end{equation}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{figure.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.378 \end{equation}
-                     <./Fig_5-8_AstroML_obj_217720894888346446_.png> <./Lightcu
-rve_full_seasonal_obj_217720894888346425.png>]
-Overfull \hbox (0.54346pt too wide) detected at line 408
- []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
-mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
-OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
- []
+ (/usr/share/texmf/tex/latex/ae/omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 160.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 439.
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.482 \end{equation}
-                     <./Extendedness_coadd_data_16520093_srcs_lim.png>]
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+ [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.482 \end{equation}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{figure.6}) has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.482 \end{equation}
-                     <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Exten
-dedness_coadd_histograms.png>]
+l.160 \end{document}
+                     <./Fig_5-8_AstroML_obj_217720894888346446_.png>]
+(./main_Astr597_part.aux)
 
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 495.
+LaTeX Warning: There were undefined references.
 
-
-Underfull \hbox (badness 1005) in paragraph at lines 498--500
-\T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
- []
-
-
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 501.
-
-[7
-
-] (./main.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 5092 strings out of 256216
- 64889 string characters out of 1917073
- 130930 words of memory out of 1500000
- 8098 multiletter control sequences out of 10000+200000
- 87265 words of font info for 182 fonts, out of 1200000 for 2000
+ 4915 strings out of 256216
+ 62204 string characters out of 1917073
+ 126336 words of memory out of 1500000
+ 8023 multiletter control sequences out of 10000+200000
+ 77595 words of font info for 165 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 32i,15n,34p,1183b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced bu
-t does not exist, replaced by a fixed one
+ 32i,15n,34p,1196b,385s stack positions out of 5000i,500n,6000p,200000b,15000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
 
 pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
 replaced by a fixed one
@@ -605,21 +477,18 @@ replaced by a fixed one
 esky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmbx8.pfb></usr/sha
 re/texmf/fonts/type1/bluesky/cm/cmbx9.pfb></usr/share/texmf/fonts/type1/bluesky
 /cm/cmex10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi10.pfb></usr/share/
-texmf/fonts/type1/bluesky/cm/cmmi9.pfb></usr/share/texmf/fonts/type1/bluesky/cm
-/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf
-/fonts/type1/bluesky/cm/cmr6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr8.
-pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.pfb></usr/share/texmf/fonts/t
-ype1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb><
-/usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr/share/texmf/fonts/type
-1/bluesky/cm/cmti8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmtt8.pfb></usr
-/share/texmf/fonts/type1/bluesky/cm/cmtt9.pfb></usr/share/texmf/fonts/type1/blu
-esky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/hoekwater/rsfs/rsfs10.pfb></u
-sr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/ur
-w/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/shar
-e/texmf/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 725107 bytes).
+texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bluesky/cm
+/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.pfb></usr/share/texmf/
+fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr9.p
+fb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/
+type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb>
+</usr/share/texmf/fonts/type1/bluesky/cm/cmti8.pfb></usr/share/texmf/fonts/type
+1/hoekwater/rsfs/rsfs10.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb><
+/usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/
+urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main_Astr597_part.pdf (2 pages, 155942 bytes).
 PDF statistics:
- 290 PDF objects out of 1000 (max. 8388607)
- 66 named destinations out of 1000 (max. 131072)
- 175 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 9 named destinations out of 1000 (max. 131072)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
