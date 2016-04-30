@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  19 APR 2016 17:08
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  30 APR 2016 15:02
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -441,7 +441,17 @@ Underfull \hbox (badness 4353) in paragraph at lines 133--134
 []\T1/aer/m/n/9 Since an im-age for each epoch is background-
  []
 
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 135.
 
+(/usr/share/texmf/tex/latex/ae/omsaer.fd
+File: omsaer.fd 1999/12/27
+)
+LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
 Underfull \hbox (badness 3039) in paragraph at lines 137--138
 []\T1/aer/m/n/9 For each patch the raw lightcurves con-tain the
  []
@@ -463,33 +473,26 @@ Underfull \hbox (badness 1264) in paragraph at lines 143--145
 \T1/aer/m/n/9 by in-verse vari-ance and cor-rected for in-trin-sic scat-ter
  []
 
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 145.
-
-(/usr/share/texmf/tex/latex/ae/omsaer.fd
-File: omsaer.fd 1999/12/27
-)
-LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-<Lightcurve_full_obj_217720894888346422.png, id=103, 433.62pt x 289.08pt>
+[2] <Lightcurve_full_obj_217720894888346422.png, id=116, 433.62pt x 289.08pt>
 File: Lightcurve_full_obj_217720894888346422.png Graphic file (type png)
 
 <use Lightcurve_full_obj_217720894888346422.png>
 \openout3 = `main-1.cpt'.
 
  (./main-1.cpt) (./main-1.cpt)
-[2]
-<Fig_5-8_AstroML_obj_217720894888346446_.png, id=120, 1156.32pt x 289.08pt>
+<Fig_5-8_AstroML_obj_217720894888346446_.png, id=118, 1156.32pt x 289.08pt>
 File: Fig_5-8_AstroML_obj_217720894888346446_.png Graphic file (type png)
 
 <use Fig_5-8_AstroML_obj_217720894888346446_.png>
 \openout3 = `main-2.cpt'.
 
- (./main-2.cpt) (./main-2.cpt)
-<Lightcurve_full_seasonal_obj_217720894888346425.png, id=123, 722.7pt x 289.08p
+ (./main-2.cpt) (./main-2.cpt) [3pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.279 
+       <./Lightcurve_full_obj_217720894888346422.png>]
+<Lightcurve_full_seasonal_obj_217720894888346425.png, id=136, 722.7pt x 289.08p
 t>
 File: Lightcurve_full_seasonal_obj_217720894888346425.png Graphic file (type pn
 g)
@@ -498,7 +501,7 @@ g)
 
  (./main-3.cpt)
 (./main-3.cpt)
-<Extendedness_coadd_data_16520093_srcs_lim.png, id=126, 578.16pt x 433.62pt>
+<Extendedness_coadd_data_16520093_srcs_lim.png, id=139, 578.16pt x 433.62pt>
 File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
 <use Extendedness_coadd_data_16520093_srcs_lim.png>
@@ -506,7 +509,7 @@ File: Extendedness_coadd_data_16520093_srcs_lim.png Graphic file (type png)
 
  (./main-4.cpt)
 (./main-4.cpt)
-<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=127, 1300.86pt x 433.62pt>
+<Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png, id=140, 1300.86pt x 433.62pt>
 File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
 
 <use Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png>
@@ -514,89 +517,83 @@ File: Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png Graphic file (type png)
 
  (./main-5.cpt)
 (./main-5.cpt)
-<Extendedness_coadd_histograms.png, id=128, 867.24pt x 578.16pt>
+<Extendedness_coadd_histograms.png, id=141, 867.24pt x 578.16pt>
 File: Extendedness_coadd_histograms.png Graphic file (type png)
 
-<use Extendedness_coadd_histograms.png> [3pdfTeX warning (ext4): destination wi
-th the same identifier (name{figure.1}) has been already used, duplicate ignore
-d
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.337 \section
-              {\\ Treatment of faint sources} <./Lightcurve_full_obj_2177208948
-88346422.png>]
+<use Extendedness_coadd_histograms.png>
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 337.
+(hyperref)                removing `\\' on input line 340.
 
 [4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.378 \end{equation}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{figure.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \endgroup \set@typeset@protect 
-l.378 \end{equation}
-                     <./Fig_5-8_AstroML_obj_217720894888346446_.png> <./Lightcu
-rve_full_seasonal_obj_217720894888346425.png>]
-Overfull \hbox (0.54346pt too wide) detected at line 408
+l.381 \end{equation}
+                     <./Fig_5-8_AstroML_obj_217720894888346446_.png>]
+Underfull \vbox (badness 1960) has occurred while \output is active []
+
+
+Overfull \hbox (0.54346pt too wide) detected at line 411
  []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
 mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
 OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
  []
 
-
-Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 439.
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.482 \end{equation}
-                     <./Extendedness_coadd_data_16520093_srcs_lim.png>]
+l.440 \end{equation}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \endgroup \set@typeset@protect 
+l.440 \end{equation}
+                     <./Lightcurve_full_seasonal_obj_217720894888346425.png> <.
+/Extendedness_coadd_data_16520093_srcs_lim.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.482 \end{equation}
+l.440 \end{equation}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.6}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.482 \end{equation}
+l.440 \end{equation}
                      <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Exten
 dedness_coadd_histograms.png>]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 495.
+(hyperref)                removing `\\' on input line 442.
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 498--500
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
+(hyperref)                removing `\\' on input line 498.
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 501--503
 \T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
  []
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 501.
+(hyperref)                removing `\\' on input line 504.
 
-[7
-
-] (./main.aux) ) 
+[7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  5092 strings out of 256216
  64889 string characters out of 1917073
- 130930 words of memory out of 1500000
+ 129930 words of memory out of 1500000
  8098 multiletter control sequences out of 10000+200000
  87265 words of font info for 182 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 32i,15n,34p,1183b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced bu
-t does not exist, replaced by a fixed one
+ 32i,15n,34p,1645b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced 
+but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
 replaced by a fixed one
@@ -617,9 +614,9 @@ esky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/hoekwater/rsfs/rsfs10.pfb></u
 sr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/ur
 w/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/shar
 e/texmf/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 725107 bytes).
+Output written on main.pdf (7 pages, 732795 bytes).
 PDF statistics:
- 290 PDF objects out of 1000 (max. 8388607)
+ 292 PDF objects out of 1000 (max. 8388607)
  66 named destinations out of 1000 (max. 131072)
  175 words of extra memory for PDF output out of 10000 (max. 10000000)
 

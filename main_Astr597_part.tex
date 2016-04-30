@@ -113,10 +113,10 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 
 
 \section{Variability}
+ 
+Many lightcurves display  intrinsic variability, in addition to the  error-induced noise. A lightcurve consists of a set of N measurements of the object brightness  $x_{i}$  and associated errors  $e_{i}$. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic, so that  the distribution of measurements is a Gaussian.  In this framework $\mu$ describes the median brightness, which for non-variable objects is the true brightness.  Using the Bayesian approach, we find $\mu$  by maximizing  the posterior probability distribution function (pdf) of  $\mu$ given $x_{i}$ and $e_{i}$ : $p(\mu | {x_{i}},{\sigma_{i}})$.  We can proceed analoguously to find the width of the distribution, $\sigma$, which describes the  departure from the mean. 
 
-Many lightcurves display an intrinsic variability, in addition to the  error-induced noise. A lightcurve consists of a set of N measurements and associated errors {$x_{i}, e_{i}$} of the object brightness. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic, so that  the distribution of measurements is Gaussian.  In this framework $\mu$ describes the median value of brightness, which for non-variable objects is the true brightness.  Using the Bayesian approach, to find $\mu$  we seek to maximize the posterior probability distribution function (pdf) of  $\mu$ given $x_{i}$ and $e_{i}$ : $p(\mu | {x_{i}},{\sigma_{i}})$.  We can proceed analoguously to find the width of the distribution, $\sigma$, which describes the  departure from the mean. 
-
-To find $\mu$ and $\sigma$, we follow Ivezic+2014, with the two-step approach:  first we find approximate values of  $\mu_{0}$ and $\sigma_{0}$, and then we evaluate the full logarithm of the posterior pdf in the vicinity of the approximate solution. The maximum of the 2D likelihood becomes our full solution - $\sigma_{full}$ and $\mu_{full}$ (see Appendix B for the detailed calculation). 
+To find $\mu$ and $\sigma$, we follow Ivezic+2014, with the two-step approach. First, we find approximate values of  $\mu_{0}$ and $\sigma_{0}$, and then we evaluate the full logarithm of the posterior pdf in the vicinity of the approximate solution. The maximum of the 2D likelihood becomes our full solution - $\sigma_{full}$ and $\mu_{full}$, as shown on Fig.~\ref{fig:sigma_example} (see Appendix B for the detailed calculation). 
 
 For each lightcurve, we also calculate mean-based $\chi^{2}_{DOF}$ and median-based $\chi^{2}_{R}$ (the latter is more robust against any outliers in the distribution) : 
 
@@ -125,13 +125,14 @@ For each lightcurve, we also calculate mean-based $\chi^{2}_{DOF}$ and median-ba
 \chi^{2}_{dof} = \frac{1}{N-1}\sum{\left( \frac{x_{i} - <x_{i}>} {e_{i}} \right) ^{2}}
 \end{equation}
 
-and 
+\noindent and
+ 
 \begin{equation}
 \label{eqn:chi2R}
 \chi^{2}_{R} = 0.7414 (Z_{75\%} - Z_{25\%} ) 
 \end{equation}
 
-with $Z=(x_{i} - median(x_{i})) / e_{i} $. 
+\noindent with $Z=(x_{i} - median(x_{i})) / e_{i} $. 
 
 Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ for the entire lightcurve. Then, only if  either $\sigma_{full}>0$ or $\chi^{2}>1 $, which hints some intrinsic variability, we also calculate $mu_{full}$, $\sigma_{full}$, and $\chi^{2}$ for the seasonally-binned portions of the lightcurve.   
 
@@ -141,6 +142,9 @@ Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\ch
 \includegraphics[width=\textwidth]{Fig_5-8_AstroML_obj_217720894888346446_.png}
 \cprotect\caption{Two-step approach to finding $\mu$ and $\sigma$ via $\mu_{0}$ and $\sigma_{0}$ for an object 217720894888346446. In this calculation we use raw psf flux, before employing the faint source treatment outlined in Section~\ref{sec:faint_sources}. On the left and middle panels,  solid lines trace marginalized posterior pdfs for $\mu$ and $\sigma$ , while dashed lines depict histogram distributions of 10,000 bootstrap resamples for $\mu_{0}$ and $\sigma_{0}$. The right panel shows the logarithm of the posterior probability density function for $\mu$ and $\sigma$.}
 \end{figure*}
+
+On Fig.~\ref{fig:sigma_example} we plot the stages of calculating $\mu$ and $\sigma$. Left and middle panels compare two methods of calculating our variability parameters. The initial approximation (dashed) is based on bootstrapped resampling of $x_i$, $e_i$ points from  the lightcurve. With bootstrapping we resample the lightcurve $M$ times, so that instead of a single sample with $N \approx 10-70 $ points  we have $M$ samples. Random resampling means that points may be chosen multiple times in a random fashion. This allows us to calculate $M$ approximate values of $\mu$,$\sigma$. Dashed lines trace the histogram for $M=1000$ resamples of our variability parameters. The approximate values are in turn used to provide bounds for the $200 x 70$ grid of $\mu$, $\sigma$ on which we evaluate the full posterior likelihood density function (right panel). This ensures that we are sampling the peak of the underlying distribution. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
