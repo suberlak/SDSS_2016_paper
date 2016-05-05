@@ -112,7 +112,7 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 
 \section{Introduction}
 \label{sec:intro}
-
+Many objects in the universe,from stellar to extragalactic scales, are variable on timescales less than a few hundred years.  By repeated observations we can characterize the physical properties and relevant timescales of very faint objects. However, since all  astronomical observations suffer from a detection threshold, a variable object may be undetectable for certain epochs, so that lightcurve becomes incomplete. This can be circumvented by co-addition of images, allowing to detect an object, but in this process loosing all time domain information. We restore the lightcurve performing at each epoch forced photometry performed at a precise location of a variable object known from the coadded images. A challenge inherent to forced photometry is an interpretation of faint, noise-dominated flux measurement. Hitherto a standard practice has ignored the wealth of information present at the faint end, applying a cutoff 1-2 magnitudes above the detection threshold magnitude. In order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, we need to address the issue of characterizing faint variable object, and how their properties are affected by our handling of the faint signal. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
 
 \section{Data Analysis}
 \label{sec:data}
@@ -438,6 +438,21 @@ $\text{A} = \sf(x_{0})$ and $\text{B} = \sf(z_{B})$, so to find  $z_{B}$ we use 
 \begin{equation}
 F_{2\sigma} = F_{obs} + \sigma_{F} \left(\, \isf (\, 0.05 \sf (x_{0})  \right)
 \end{equation}
+
+\bigskip
+
+% We also find the root-mean-square:
+
+\begin{equation}
+F_{rms}^{2} = \frac{\int _{0} ^ {\infty}{(F-F_{mean})^{2} p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}} = I_{0} / I_{1}
+\end{equation}
+
+this can be evaluated by numerical integration, scaling by $\sigma_{F}$, so that $x_{mean} = F_{mean} / \sigma_{F}$, $x_{obs} = F_{obs} / \sigma_{F}$ : 
+
+\begin{equation}
+F_{rms}^{2} = \frac{\sigma_{F}^{2} \int_{0}^{\infty} {(x-x_{mean})^{2} exp(-(x-x_{obs})^{2} / 2 ) dx }}  {\int_{0}^{\infty} {exp(-(x-x_{obs})^{2} / 2 ) dx }}
+\end{equation}
+
 
 \section{\\ Characterizing variability}
 \label{App:AppendixB}
