@@ -479,14 +479,14 @@ F_{rms}^{2} = \frac{\sigma_{F}^{2} \int_{0}^{\infty} {(x-x_{mean})^{2} exp(-(x-x
 
 We derived analytical expression for rms :
 \begin{equation}
-x_{rms} = (\frac{I_{0}}{I_{1} \sigma_{F}^{2}})^{1/2}
+x_{rms} = \left(\frac{I_{0}}{I_{1} \sigma_{F}^{2}}\right)^{1/2}
 \end{equation}
 
 where $I_{1}$ is our normalization , as in calculation of $F_{mean}$, and as 
 
 
 \begin{equation}
-\frac{I_{0}}{ \sigma_{F}^{2}} = \frac{1}{2} \erf(\frac{x_{obs}}{\sqrt{2}}) + \frac{1}{\sqrt{2\pi}} e^{(-x_{obs}^{2} / 2)} (2 \Delta x - x_{obs}) + (\Delta x)^{2} \sf(-x_{obs})
+\frac{I_{0}}{ \sigma_{F}^{2}} = \frac{1}{2} \erf\left(\frac{x_{obs}}{\sqrt{2}}\right) + \frac{1}{\sqrt{2\pi}} e^{(-x_{obs}^{2} / 2)} (2 \Delta x - x_{obs}) + (\Delta x)^{2} \sf(-x_{obs})
 \end{equation}
 with  $\Delta x = x_{obs} - x_{mean}$
 
