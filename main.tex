@@ -340,14 +340,36 @@ The SDSS is managed by the Astrophysical Research Consortium for the Participati
 \section{\\ Treatment of faint sources}
 \label{App:AppendixA}
 
+In our calculations we used the  \verb|scipy| implementation of 
+the following often used integrals of Gaussian distributions : 
 
-Using our definition, the mean is :  
+- cumulative density function, which is an area under the Gaussian distribution from $-\infty$ to $x_{0}$ :
+
+\begin{equation}
+\cdf(x_{0}) = \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)dx} = \int_{-\infty}^{x_{0}}{\frac{\exp{(x-\mu)^{2} / 2\sigma^{2}}}{\sqrt{2\pi\sigma^{2}}} dx}
+\end{equation}
+
+- point percent function , which is an inverse of the cumulative density function -  if  $A = \cdf(x_{0})$, then  $x_{0} = \ppf(A)$
+
+- survival function (also known  as the complementary cumulative distribution function), which is an area under a Gaussian distribution from $x_{0}$ to $\infty$
+
+\begin{multline}
+\sf(x_{0}) =  \int_{x_{0}}^{\infty}{\mathcal{N}(\mu,\sigma)dx} =  \int_{-\infty}^{\infty}{\mathcal{N}(\mu,\sigma)dx} -  \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)dx} = \\
+1 - \cdf(x_{0})
+\end{multline}
+
+In our faint flux treatment  we assume that each flux measurement has an associated Gaussian likelihood, and that the width and mean of the likelihood correspond 
+to the measured flux and the measurement error respectively. 
+
+For a source where signal-to-noise < 2 (in our case, ratio of  flux to error), we remove the negative portion of the likelihood, since there is no physical likelihood that a flux would be negative.
+Thus for mean, we integrate from $0$ instead of $-\infty$ : 
 
 
 \begin{equation}
 F_{mean} = \frac{\int _{0} ^ {\infty}{F p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}} = I_{0} / I_{1}
 \end{equation}
 
+where we need to normalize by the integral over the positive part of the Gaussian likelihood. 
 
 We evaluate 
 
@@ -366,23 +388,9 @@ so that
 x_{mean} = \frac{\exp{(- x_{obs}^{2} / 2 )} }{\sf{(-x_{obs})}\sqrt{2 \pi}} + x_{obs} 
 \end{equation}
 
-where we scaled $F_{obs}$ by  $\sigma_F$  (i.e. $F_{mean} = x_{mean} \cdot \sigma_{F}$). In this and following calculations we used  scipy implementation of 
-often used integrals of Gaussian distributions : 
+where we scaled $F_{obs}$ by  $\sigma_F$  (i.e. $F_{mean} = x_{mean} \cdot \sigma_{F}$). 
 
-- cumulative density function, which is an area under a Gaussian distribution from $-\infty$ to $x_{0}$ :
 
-\begin{equation}
-\cdf{x_{0}} = \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)} = \int_{-\infty}^{x_{0}}{\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{(x-\mu)^{2} / 2\sigma^{2}}}
-\end{equation}
-
-- point percent function , which is an inverse of the cumulative density function -  if  $A = \cdf(x_{0})$, then  $x_{0} = \ppf(A)$
-
-- survival function (also known  as the complementary cumulative distribution function), which is an area under a Gaussian distribution from $x_{0}$ to $\infty$
-
-\begin{multline}
-\sf(x_{0}) =  \int_{x_{0}}^{\infty}{\mathcal{N}(\mu,\sigma)} =  \int_{-\infty}^{\infty}{\mathcal{N}(\mu,\sigma)} -  \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)} = \\
-1 - \cdf(x_{0})
-\end{multline}
 
 \bigskip
 
@@ -393,7 +401,7 @@ p(x) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{(x-x_{obs})^{2}}{2}\right)}
 
 Then we transform from $x$ to $z$ space, with  a translation by $x_{obs} = F_{obs} / \sigma_{F}$ :  $z = x - x_{obs}$  , so that now  $p(z) \sim \mathcal{N}(0,1)$:
 \begin{equation}
-p(z) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{(z)^{2}}{2}\right)}
+p(z) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{z^2}{2}\right)}
 \end{equation}
 
 
@@ -414,13 +422,13 @@ with  $x_{0}=-x_{obs}$
 
 \bigskip
 
-This expression for $z_{med}$ can be evaluated : rhs is  a survival function  : 
+We evaluate $z_{med}$ analytically  - the right hand side is the survival function  : 
 
 \begin{equation}
 \int_{z_{med}}^{\infty}{p(z)dz} = \sf(z_{med})
 \end{equation}
 
-and the lhs, assuming $z_{med} > x_{0}$, is :
+and the left hand side, assuming that the median $z_{med} > x_{0}$, is :
 
 \begin{multline}
 \int_{x_{0}}^{z_{med}}{p(z)dz} = \int_{-\infty}^{z_{med}}{p(z)dz} - \int_{-\infty}^{x_{0}}{p(z)dz} = \cdf(z_{med}) - \cdf(x_{0})

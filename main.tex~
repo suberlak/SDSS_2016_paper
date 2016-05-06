@@ -366,7 +366,23 @@ so that
 x_{mean} = \frac{\exp{(- x_{obs}^{2} / 2 )} }{\sf{(-x_{obs})}\sqrt{2 \pi}} + x_{obs} 
 \end{equation}
 
-where we scaled $F_{obs}$ by  $\sigma_F$  (i.e. $F_{mean} = x_{mean} \cdot \sigma_{F}$).
+where we scaled $F_{obs}$ by  $\sigma_F$  (i.e. $F_{mean} = x_{mean} \cdot \sigma_{F}$). In this and following calculations we used  scipy implementation of 
+often used integrals of Gaussian distributions : 
+
+- cumulative density function, which is an area under a Gaussian distribution from $-\infty$ to $x_{0}$ :
+
+\begin{equation}
+\cdf{x_{0}} = \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)} = \int_{-\infty}^{x_{0}}{\frac{1}{\sqrt{2\pi\sigma^{2}}} \exp{(x-\mu)^{2} / 2\sigma^{2}}}
+\end{equation}
+
+- point percent function , which is an inverse of the cumulative density function -  if  $A = \cdf(x_{0})$, then  $x_{0} = \ppf(A)$
+
+- survival function (also known  as the complementary cumulative distribution function), which is an area under a Gaussian distribution from $x_{0}$ to $\infty$
+
+\begin{multline}
+\sf(x_{0}) =  \int_{x_{0}}^{\infty}{\mathcal{N}(\mu,\sigma)} =  \int_{-\infty}^{\infty}{\mathcal{N}(\mu,\sigma)} -  \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)} = \\
+1 - \cdf(x_{0})
+\end{multline}
 
 \bigskip
 
@@ -398,7 +414,7 @@ with  $x_{0}=-x_{obs}$
 
 \bigskip
 
-This expression for $z_{med}$ can be evaluated : rhs is  a survival function ($\sf$) = 1 - cumulative density function ($\cdf$) : 
+This expression for $z_{med}$ can be evaluated : rhs is  a survival function  : 
 
 \begin{equation}
 \int_{z_{med}}^{\infty}{p(z)dz} = \sf(z_{med})
