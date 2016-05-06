@@ -343,15 +343,15 @@ The SDSS is managed by the Astrophysical Research Consortium for the Participati
 In our calculations we used the  \verb|scipy| implementation of 
 the following often used integrals of Gaussian distributions : 
 
-- cumulative density function, which is an area under the Gaussian distribution from $-\infty$ to $x_{0}$ :
+- cumulative density function, that is an area under the Gaussian distribution from $-\infty$ to $x_{0}$ :
 
 \begin{equation}
 \cdf(x_{0}) = \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)dx} = \int_{-\infty}^{x_{0}}{\frac{\exp{(x-\mu)^{2} / 2\sigma^{2}}}{\sqrt{2\pi\sigma^{2}}} dx}
 \end{equation}
 
-- point percent function , which is an inverse of the cumulative density function -  if  $A = \cdf(x_{0})$, then  $x_{0} = \ppf(A)$
+- point percent function , that is an inverse of the cumulative density function:  if  $A = \cdf(x_{0})$, then  $x_{0} = \ppf(A)$
 
-- survival function (also known  as the complementary cumulative distribution function), which is an area under a Gaussian distribution from $x_{0}$ to $\infty$
+- survival function (also known  as the complementary cumulative distribution function), that is an area under a Gaussian distribution from $x_{0}$ to $\infty$
 
 \begin{multline}
 \sf(x_{0}) =  \int_{x_{0}}^{\infty}{\mathcal{N}(\mu,\sigma)dx} =  \int_{-\infty}^{\infty}{\mathcal{N}(\mu,\sigma)dx} -  \int_{-\infty}^{x_{0}}{\mathcal{N}(\mu,\sigma)dx} = \\
@@ -399,7 +399,7 @@ To find the median and the $2\sigma$ level we transform from $F$ space to $x$ sp
 p(x) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{(x-x_{obs})^{2}}{2}\right)}
 \end{equation}
 
-Then we transform from $x$ to $z$ space, with  a translation by $x_{obs} = F_{obs} / \sigma_{F}$ :  $z = x - x_{obs}$  , so that now  $p(z) \sim \mathcal{N}(0,1)$:
+We  then transform from $x$ to $z$ space, with  a translation by $x_{obs} = F_{obs} / \sigma_{F}$ :  $z = x - x_{obs}$  , so that now  $p(z) \sim \mathcal{N}(0,1)$:
 \begin{equation}
 p(z) = \frac{1}{\sqrt{2  \pi }} \exp{ \left(-\frac{z^2}{2}\right)}
 \end{equation}
@@ -434,7 +434,7 @@ and the left hand side, assuming that the median $z_{med} > x_{0}$, is :
 \int_{x_{0}}^{z_{med}}{p(z)dz} = \int_{-\infty}^{z_{med}}{p(z)dz} - \int_{-\infty}^{x_{0}}{p(z)dz} = \cdf(z_{med}) - \cdf(x_{0})
 \end{multline}
 
-Rearranging, and using the percent point function ($\ppf$) - the inverse of the $\cdf$, we find:
+Rearranging, and using the percent point function ($\ppf$)  we find:
 
 \begin{equation}
 z_{med} = \ppf \left( \frac{1+\cdf(x_{0})}{2} \right)
@@ -477,6 +477,18 @@ this can be evaluated by numerical integration, scaling by $\sigma_{F}$, so that
 F_{rms}^{2} = \frac{\sigma_{F}^{2} \int_{0}^{\infty} {(x-x_{mean})^{2} exp(-(x-x_{obs})^{2} / 2 ) dx }}  {\int_{0}^{\infty} {exp(-(x-x_{obs})^{2} / 2 ) dx }}
 \end{equation}
 
+We derived analytical expression for rms :
+\begin{equation}
+x_{rms} = (\frac{I_{0}}{I_{1} \sigma_{F}^{2}})^{1/2}
+\end{equation}
+
+where $I_{1}$ is our normalization , as in calculation of $F_{mean}$, and as 
+
+
+\begin{equation}
+\frac{I_{0}}{ \sigma_{F}^{2}} = \frac{1}{2} \erf\left(\frac{x_{obs}}{\sqrt{2}}\right) + \frac{1}{\sqrt{2\pi}} e^{(-x_{obs}^{2} / 2)} (2 \Delta x - x_{obs}) + (\Delta x)^{2} \sf(-x_{obs})
+\end{equation}
+with  $\Delta x = x_{obs} - x_{mean}$
 
 \section{\\ Characterizing variability}
 \label{App:AppendixB}
