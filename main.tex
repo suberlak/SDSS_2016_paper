@@ -112,7 +112,7 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 
 \section{Introduction}
 \label{sec:intro}
-Many objects in the universe,from stellar to extragalactic scales, vary on timescales less than a few hundred years. Lightcurves carry a wealth of information allowing one to infer various physical properties of an planet or a galaxy. An incomplete lightcurve renders the inferred  characteristics  less certain. Yet, since all  astronomical observations suffer from a detection threshold, a very faint variable object may go undetected in some single epoch photometry. Forced photometry rescues the information from very faint epochs by performing a measurement in all epochs in a location from the co-added images. An inherent challenge to such set of measurements is an intepretation of noise-dominated flux. To circumvent this problem many studies apply a magnitude cutoff few magnitudes above the detection limit, which reduces the amount of available data. Indeed, in order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, and properly characterize faint variable objects, we need to properly handle the faint flux measurements. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
+Many objects in the universe, from stellar to extragalactic scales, vary on timescales less than a few hundred years. Lightcurves carry a wealth of information allowing one to infer various physical properties of a planet or a galaxy. If a lightcurve is poorly sampled, the inferred  characteristics are less certain. Yet, since all  astronomical observations suffer from a detection threshold, a very faint variable object in some epochs may be undetectable. Forced photometry rescues the information from very faint epochs by performing a measurement in all epochs in a location from the co-added images. An inherent challenge to such set of measurements is an intepretation of noise-dominated flux. To circumvent this problem many studies apply a magnitude cutoff few magnitudes above the detection limit, which reduces the amount of available data. Indeed, in order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, and properly characterize faint variable objects, we need to properly handle the faint flux measurements. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
 
 \section{Data Analysis}
 \label{sec:data}
@@ -136,83 +136,95 @@ This can be understood realizing that background in the  optical bands is bright
 
 For each patch the raw lightcurves contain the \verb|id|, \verb|objectId|, \verb|exposure_id|, \verb|mjd|, \verb|psfFlux|, \verb|psfFluxErr|, sorted by \verb|objectId|, measuring flux in $[ergs/ cm^{2} / sec / Hz]$ (\verb|rawDataFPSplit/bandPatchStart_PatchEnd.csv|). 
 
-\subsection{Lightcurve Metrics}
-For each object we calculate lightcurve-derived metrics. Denoting \verb|psfFlux| and \verb|psfFluxErr| as $y$ and $\sigma_{y}$, we find the number of measurements per lightcurve (N), the mean flux, the median flux (the 50th quartile), median flux error \verb|e50|, mean flux error \verb|e_mean|, $\sigma_{G}$ (based on interquartile flux range 0.7413(q75-q25)), $\chi^{2}$:
-\begin{equation}
-\frac{1}{N-1} \sum{\left( \frac{y-mean(y)}{\sigma_{y}} \right) ^{2}}
-\end{equation}
- mean weighted by the \verb|WVar| - the inverse variance (\verb|WeightedMean|), and the standard deviation weighted by inverse variance and corrected for intrinsic scatter (\verb|WeightedStdCorr|):
 
-\begin{equation}
-\mbox{WVar} = \left( \sum{\frac{1}{\sigma_{y}^{2}}} \right) ^{-1}
-\end{equation} 
-
-\begin{equation}
-\mbox{WeightedMean} = \mbox{WVar} \sum{\frac{y}{\sigma_{y}^{2}}}
-\end{equation}
-
-\begin{equation}
-\mbox{WeightedStdCorr} =  \left[ \frac{ \mbox{WVar}  }{N-1} \sum{\frac{(y-\mbox{WeightedMean})^{2}}{\sigma_{y}^{2}}} \right] ^{1/2}
-\end{equation}
-
-
-
-From these metrics, we can calculate the catalog photometry  :
-
-\begin{equation}
-\verb|median_mag| = -2.5 \log_{10}\mbox{median} - 48.6
-\end{equation}
-
-There are  $5892054$ sources with catalog photometry brighter than $23$ mag  (\verb|ugrizMetrics.csv|). 
-
-We can also calculate median photometry over all individual epochs  detections, cross-matched by extinction tables [HOW ? ]  There are $12373162$ sources with median photometry, matched with E(B-V) data (\verb|medianPhotometry.csv|) . 
-
-For each band we calculate metrics describing the lightcurve behavior for a given band, including the Butler \& Bloom classifier, which can  for high S/N objects, where it has a good discriminating power. It's advantage over the full DRW analysis for each lightcurve is that by assuming a range of $\tau$, amplitude, expected for a DRW for a QSO, we calculate the likelihood of a given lightcurve belonging to a QSO ( \verb|i_metrics.csv|). 
 
 
 \subsection{Faint Sources}
 \label{sec:faint_sources}
-When performing forced photometry we encounter sources that are very dim ($<2\sigma$) in a single epoch image.  Consider the distribution of the likelihood of flux measurement   $L(F|data)$. For bright sources it is a very narrow Gaussian centered on the measured $F_{S}$, with width $\sigma_{F}$ on the level of $1-2 \%  \approx 0.01-0.02$ mag. However, for faint sources that have larger measurement uncertainties, the Gaussian likelihood has much wider tails. When a tail extends below zero, it  means that there is a nonzero likelihood of a negative flux measurement, which is unphysical.
+Forced photometry measurement in a single epoch  is in fact the mean of a likelihood for the observed flux. We can think of each source as  being represented by a Gaussian likelihood centered on the measured flux $F_{i}$, with a widh corresponding to the measurement error $\sigma_{i}$. Thus in the flux likelihood space bright sources have very narrow Gaussians, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag, whereas faint sources with larger uncertainties have very wide Gaussian tails, that can extend  below zero.  Such nonzero likelihood for a negative flux measurement is unphysical, given that we know that no source can in  reality have a negative flux. Any negative portion of the likelihood stems from the background fluctuation, as described in previous section, or from very large measurement error. We address the issue of negative tails of Gaussian flux likelihood by recalculating the measurement of flux for all sources  with less than $'2\sigma'$ detection, i.e. $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  (in a  Gaussian likelihood).
 
-As an example of prior choice, we consider a sinusoidally varying flux.  If the flux of an object over many epochs is expected to vary in a sinusoidal fashion, i.e. $F(t) = F_{min}+ sin(t)$, the probability of a given  flux measurement is a cosine, from $F_{min}$ to $F_{max}$. Thus, if no prior measurements were taken, we can confidently say that the flux of our object is most likely  $(F_{min} + F_{max}) /  2$, i.e. at the peak of the cosine likelihood function. However, as soon as one measurement is taken of $(F_{i},e_{i})$, the probability distribution of a flux of an object at that epoch becomes a convolution of our cosine prior information with the Gaussian curve of width $e_{i}$, centered on $F_{i}$ (assuming Gaussian errors). However, without any a-priori information about the variability pattern of the considered object, the least informative Bayesian prior we can impose is a flat one : $p(F)=0 $ for $F<0$, and $1$ elsewhere. Thus the posterior probability is 
+In our treatment we are explicitly using a prior understanding of the flux behavior of any astrophysical object.  Without any further knowledge about the nature of the source, flat prior is the least informative Bayesian prior. Any additional information about the nature of object, and thus expected variability pattern,  could affect the choice of prior to be more specific. For instance,  consider a sinusoidal flux variability. If the flux of an object over many epochs is expected to vary in a sinusoidal fashion, i.e. $F(t) = F_{min}+ sin(t)$, the probability of a given  flux measurement is a cosine, ranging from $F_{min}$ to $F_{max}$. With that prior, without any measurement taken, the flux of the object is most likely  $(F_{min} + F_{max}) /  2$, i.e. at the peak of the cosine likelihood function. However, as soon as one measures $(F_{i},e_{i})$ from that source, the probability distribution of a flux at that epoch becomes a convolution of cosine prior information with the Gaussian curve of width $e_{i}$, centered on $F_{i}$ (assuming Gaussian errors). However, without any a-priori information about the variability pattern of the considered object, the least informative Bayesian prior we can impose is a flat one : $p(F)=0 $ for $F<0$, and $1$ elsewhere. Thus the posterior probability is 
 
 \begin{equation}
 p(F|data) \propto L(F|data) p(F)
 \end{equation}
 
-Such flat prior would only affect the faint sources, by moving the posterior distribution above zero flux.  The measurement of flux for bright sources would not be affected. We chose to apply the Bayesian prior  for faint measurements where  $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  assuming Gaussian likelihood. 
-
-To test our method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$ (in reality, $\sigma$ increases for fainter observations, but this is a good approximation). 
+\subsubsection{Faint Method Test }
+To test the method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$ (in reality, $\sigma$ increases for fainter observations, but this is a good approximation). 
 \newline
 We define $F_{obs} = F_{true} + F_{noise}$, where the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ was added to each point. 
 For a weak signal, defined as $F_{obs}^{i} < 2 \sigma{F}$, we consider $p(F)$  - a  Gaussian  likelihood associated with $i$-th measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$. Each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
 
+
+\subsection{Data Processing Pipeline}
+
+\subsubsection{Faint source treatment}
+For each epoch, based on the raw forced photometry measurement, we calculate new descriptors of faint fluxes. We define a faint measurement by $F_{i} < 2 \sigma{F_{i}}$, i.e. where the flux is less than twice the flux error. We assume that the flux is the mean of the Gaussian likelihood  $p_{i}(F) = \mathcal{N}(\mu=F_{i}, \sigma=\sigma_{F_{i}})$ : 
 \begin{equation}
 p(F) = \frac{1}{\sqrt{2  \pi \sigma_{F}^{2}}} \exp{ \left(-\frac{(F-\mu)^{2}}{2\sigma_{F}^{2}}\right)}
 \end{equation}
 
- After imposing the Bayesian uniform prior $p(F)$ becomes a truncated Gaussian (without the negative part), centered on $F_{obs}^{i}$, with a width $\sigma_F$. Thus for the truncated $p(F)$  the mean ceases to be $F_{obs}^{i}$, but it can be defined as 
+so that $F_{i} =\langle p(F) \rangle $.  For faint measurements we truncate the negative part of $p(F)$, and recalculate the mean, median, rms, and $2 \sigma$ level. Thus the mean is  
+
 
 \begin{equation}
 F_{mean} = \frac{\int _{0} ^ {\infty}{F p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}}
 \end{equation} 
-remembering to normalize by  integrating over the Gaussian likelihood.
+where we normalized the truncated Gaussian likelihood.
  
-We also define the median as  
+We define the median as  
 
 \begin{equation}
 \int _{0} ^ {F_{median}} {p(F) dF} = \int _{F_{median}} ^ {\infty} {p(F) dF}
 \end{equation} 
 
-Finally, since for a Gaussian distribution the area contained between $\mu \pm \sigma$ is $95.5 \%$ of the total area under the curve, for the truncated Gaussian we define the  $2 \sigma$ level as  two areas  $B = 0.05 A$, or : 
+The rms level is
+
+\begin{equation}
+F_{rms}^{2} = \frac{\int _{0} ^ {\infty}{(F-F_{mean})^{2} p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}} 
+\end{equation}
+
+Finally, since for a Gaussian distribution the area contained between $\mu \pm \sigma$ is $95.5 \%$ of the total area under the curve, for the truncated Gaussian we define the  $2 \sigma$ level as:
 
 \begin{equation}
 \int _{F_{2 \sigma}} ^{\infty} {p(F)dF} = 0.05 * \int _{0} ^{\infty} {p(F) dF} 
 \end{equation}
 
-In those cases, normalization constant on both sides of equations cancels out. 
+Both for median and for the $2\sigma$ level the normalization cancels out. For details, see Appendix ... 
 
-(see Appendix )
+\subsubsection{Lightcurve statistics}
+In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$. For all objects we calculate statistics based on entire lightcurves. We denote $(F_{obs}, \sigma_{obs})$ as $(x_{i},\sigma_{i})$ : 
+
+- mean weighted by  $w_{i} = (\sigma_{i})^{-2}$
+
+\begin{equation}
+\bar{x} = \frac{\sum_{i=1}^{N}{w_{i}x_{i}}}{\sum_{i=1}^{N}{w_{i}}}
+\end{equation}
+
+- weighted mean error 
+\begin{equation}
+\sigma_{\bar{x}} = \left( \sum{w_{i}}\right) ^{-1/2} 
+\end{equation}
+
+- weighted standard deviation 
+\begin{equation}
+\sigma_{st.dev.w.} = \left( \frac{\sum{w_{i}(x_{i} - \bar{x})^{2}}}{\frac{N-1}{N}\sum{w_{i}}} \right) ^ {1/2}
+\end{equation}
+
+- error on standard deviation 
+\begin{equation}
+\sigma_{s} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1} \sigma_{\bar{x}}}
+\end{equation}
+- robust interquartile width
+$\sigma_{G} = 0.7414 * (75\% - 25\%) $
+
+- median as the 50-th percentile , median error 
+$\sigma_{median} = \sqrt{\pi/2}\sigma_{\bar{x}}$
+ 
+
+- skewness 
+
+
 
 %\begin{figure}
 %\label{fig:sim_lc}
@@ -221,28 +233,8 @@ In those cases, normalization constant on both sides of equations cancels out.
 %\end{figure}
 
 
-\subsection{Photometric colors}
 
-Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling (see Fig.~\ref{fig:lc_example}).  
-
-\begin{figure}
-\label{fig:lc_example}
- \includegraphics[width=\columnwidth]{Lightcurve_full_obj_217720894888346422.png}
- \cprotect\caption{A plot showing an example lightcurve for an object id 217720894888346422. Jan 1st of each year (blue),  August 1st of 2005 (orange) and August 1st of each subsequent year (red) is indicated by vertical dashed lines. Observations prior to August 1st of 2005 have sparser cadence, whereas those after that date have more frequent observations.  This is due to the SDSS-III Supernova Survey which begun  Sept 1st 2005.  All points to the left of August 1st 2005 (orange line) are averaged together.  Points to the right of August 1st 2005 are seasonally averaged. }
-\end{figure}
-
-Thus for a given object we average all sparser observations prior before SDSS-III, and calculate annual averages for all subsequent years. We calculate weighted mean and the rms as 
-\begin{equation}
-<F> = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
-\sigma_{<F>} = \left( \sum{w_{i}}\right) ^{-1/2} 
-\end{equation}
-
-with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate the robust  median and the median error : $\sqrt{\pi / 2} \, \sigma_{F}$  [ robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $ , based on the interquartile range] . Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $meanErr$) or ($median$, $medianErr$).
-
-
-The resulting average flux is converted to magnitude, and the color is  $c = m_{x}-m_{y}$, with combined errors of band lightcurves added in quadrature
-
-\subsection{Variability}
+\subsubsection{Variability Characteristics }
 
  
 Variations in object brightness  have two main origins:  an  error-induced noise, and an intrinsic variability. A lightcurve consists of a set of N measurements of brightness  $x_{i}$  with  errors  $e_{i}$. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic. We describe this distribution with two parameters : mean $\mu$, and width $\sigma$. To increase efficiency, we employ a two-step  approach after Ivezic+2014. 
@@ -264,9 +256,10 @@ For each lightcurve, we also calculate mean-based $\chi^{2}_{DOF}$ and median-ba
 \end{equation}
 
 \noindent with $Z=(x_{i} - median(x_{i})) / e_{i} $. 
+\bigskip
 
-Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ for the entire lightcurve. Then, only if  either $\sigma_{full}>0$ or $\chi^{2}>1 $, which hints some intrinsic variability, we also calculate $mu_{full}$, $\sigma_{full}$, and $\chi^{2}$ for the seasonally-binned portions of the lightcurve.   
 
+Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ for the entire lightcurve. Then, only if  either $\sigma_{full}>0$ or $\chi^{2}>1 $, which hints some intrinsic variability, we also calculate $\mu_{full}$, $\sigma_{full}$, and $\chi^{2}$ for the seasonally-binned portions of the lightcurve.   
 
 \begin{figure*}
 \label{fig:sigma_example}
@@ -285,6 +278,8 @@ We use the approximate values to provide bounds for the $200 x 70$ grid of $\mu$
  \cprotect\caption{A plot showing an outcome of seasonal averaging for an object id 217720894888346425. The left panel (red dots) shows  (mean, meanErr),  and the right panel (orange) shows (median,medianErr), instead of seasonal points (blue). Vertical dashed lines as on Fig.~\ref{fig:lc_example}}
 \end{figure*}
 
+\subsubsection{Variable Candidates Selection}
+
 
 
 \subsection{Extinction Correction}
@@ -300,6 +295,29 @@ Since the reported fluxes are not extinction-corrected, we use a table of E(B-V)
  \cprotect\caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness | parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact.  }
 \end{figure}
 % 
+\subsection{Photometric colors}
+
+Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling (see Fig.~\ref{fig:lc_example}).  
+
+\begin{figure}
+\label{fig:lc_example}
+ \includegraphics[width=\columnwidth]{Lightcurve_full_obj_217720894888346422.png}
+ \cprotect\caption{A plot showing an example lightcurve for an object id 217720894888346422. Jan 1st of each year (blue),  August 1st of 2005 (orange) and August 1st of each subsequent year (red) is indicated by vertical dashed lines. Observations prior to August 1st of 2005 have sparser cadence, whereas those after that date have more frequent observations.  This is due to the SDSS-III Supernova Survey which begun  Sept 1st 2005.  All points to the left of August 1st 2005 (orange line) are averaged together.  Points to the right of August 1st 2005 are seasonally averaged. }
+\end{figure}
+
+Thus for a given object we average all sparser observations prior before SDSS-III, and calculate annual averages for all subsequent years. We calculate weighted mean and the rms as 
+\begin{equation}
+<F> = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
+\sigma_{<F>} = \left( \sum{w_{i}}\right) ^{-1/2} 
+\end{equation}
+
+with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate the robust  median and the median error : $\sqrt{\pi / 2} \, \sigma_{F}$  [ robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $ , based on the interquartile range] . Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $meanErr$) or ($median$, $medianErr$).
+
+
+The resulting average flux is converted to magnitude, and the color is  $c = m_{x}-m_{y}$, with combined errors of band lightcurves added in quadrature
+
+
+
 
 \section{Results}
 \label{sec:results}
@@ -466,7 +484,7 @@ F_{2\sigma} = F_{obs} + \sigma_{F} \left(\, \isf (\, 0.05 \sf (x_{0})  \right)
 
 \bigskip
 
-% We also find the root-mean-square:
+We also find the root-mean-square:
 
 \begin{equation}
 F_{rms}^{2} = \frac{\int _{0} ^ {\infty}{(F-F_{mean})^{2} p(F) dF}}{\int _{0} ^ {\infty}{p(F) dF}} = I_{0} / I_{1}
@@ -547,6 +565,7 @@ p_{norm}(\mu) = \frac{p(\mu)} {\int {p(\mu) \text{d}\mu} }
 To characterize  lightcurve variability we first calculate for the entire lightcurve of an object  the approximate $\mu_{0}$ and $\sigma_{0}$ using bootstrapped resampling of the lightcurve.  This yields the boundaries for the more exact calculation of the full 2D log-likelihood performed on a grid of $\mu$ and $\sigma$ values. Thus the more accurate $\sigma_{full}$ and $\mu_{full}$ are found as a maximum of the 2D log-likelihood distribution (see Fig.~\ref{fig:sigma_example} ).
 
 
+
 \section{\\ Making of ugriz metrics }
 \label{App:AppendixC}
 
@@ -557,6 +576,40 @@ The median over all detections will be biased (especially for faint sources) tow
 \label{App:AppendixD}
 
 If the median flux of an object over all epochs  is negative (an outcome of forced photometry on fluctuating noise), we cannot define its magnitude in that filter.  In such situation one can revert to  using for each negative flux the zero point magnitude ($m_1$) - the magnitude for a source with a flux of 1 count per sec, different for each exposure.  The zero point magnitude for each exposure with negative flux is calculated from the  Flux of 0 magnitude source,  $F_0$,  as  $m_{1} = 2.5 \log_{10}{F_{0}}$. For that object the new median magnitude in that filter will be the upper limit. We did not use this method, since a better way is to calculate the $2-\sigma$ flux limit for each flux measurement $< 2 \sigma$ : $F_{2\sigma}$. 
+
+\section{\\ Lightcurve Metrics}
+For each object we calculate lightcurve-derived metrics. Denoting \verb|psfFlux| and \verb|psfFluxErr| as $y$ and $\sigma_{y}$, we find the number of measurements per lightcurve (N), the mean flux, the median flux (the 50th quartile), median flux error \verb|e50|, mean flux error \verb|e_mean|, $\sigma_{G}$ (based on interquartile flux range 0.7413(q75-q25)), $\chi^{2}$:
+\begin{equation}
+\frac{1}{N-1} \sum{\left( \frac{y-mean(y)}{\sigma_{y}} \right) ^{2}}
+\end{equation}
+ mean weighted by the \verb|WVar| - the inverse variance (\verb|WeightedMean|), and the standard deviation weighted by inverse variance and corrected for intrinsic scatter (\verb|WeightedStdCorr|):
+
+\begin{equation}
+\mbox{WVar} = \left( \sum{\frac{1}{\sigma_{y}^{2}}} \right) ^{-1}
+\end{equation} 
+
+\begin{equation}
+\mbox{WeightedMean} = \mbox{WVar} \sum{\frac{y}{\sigma_{y}^{2}}}
+\end{equation}
+
+\begin{equation}
+\mbox{WeightedStdCorr} =  \left[ \frac{ \mbox{WVar}  }{N-1} \sum{\frac{(y-\mbox{WeightedMean})^{2}}{\sigma_{y}^{2}}} \right] ^{1/2}
+\end{equation}
+
+
+
+From these metrics, we can calculate the catalog photometry  :
+
+\begin{equation}
+\verb|median_mag| = -2.5 \log_{10}\mbox{median} - 48.6
+\end{equation}
+
+There are  $5892054$ sources with catalog photometry brighter than $23$ mag  (\verb|ugrizMetrics.csv|). 
+
+We can also calculate median photometry over all individual epochs  detections, cross-matched by extinction tables [HOW ? ]  There are $12373162$ sources with median photometry, matched with E(B-V) data (\verb|medianPhotometry.csv|) . 
+
+For each band we calculate metrics describing the lightcurve behavior for a given band, including the Butler \& Bloom classifier, which can  for high S/N objects, where it has a good discriminating power. It's advantage over the full DRW analysis for each lightcurve is that by assuming a range of $\tau$, amplitude, expected for a DRW for a QSO, we calculate the likelihood of a given lightcurve belonging to a QSO ( \verb|i_metrics.csv|). 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

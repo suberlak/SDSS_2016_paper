@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  28 APR 2016 15:14
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  6 MAY 2016 16:51
 entering extended mode
  %&-line parsing enabled.
 **main_Astr597_part.tex
@@ -414,10 +414,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--105
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 122.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 117.
-<Fig_5-8_AstroML_obj_217720894888346446_.png, id=13, 1156.32pt x 289.08pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 122.
+<Fig_5-8_AstroML_obj_217720894888346446_.png, id=17, 1156.32pt x 289.08pt>
 File: Fig_5-8_AstroML_obj_217720894888346446_.png Graphic file (type png)
 
 <use Fig_5-8_AstroML_obj_217720894888346446_.png>
@@ -434,13 +434,13 @@ LaTeX Warning: Reference `sec:faint_sources' on page 1 undefined on input line
 1.
 
 )
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 164.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 173.
 
  (/usr/share/texmf/tex/latex/ae/omsaer.fd
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 173.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -451,7 +451,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.164 \end{document}
+l.173 \end{document}
                      <./Fig_5-8_AstroML_obj_217720894888346446_.png>]
 (./main_Astr597_part.aux)
 
@@ -459,13 +459,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 4915 strings out of 256216
- 62204 string characters out of 1917073
- 127336 words of memory out of 1500000
- 8023 multiletter control sequences out of 10000+200000
+ 4917 strings out of 256216
+ 62224 string characters out of 1917073
+ 126336 words of memory out of 1500000
+ 8024 multiletter control sequences out of 10000+200000
  77595 words of font info for 165 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 32i,15n,34p,1196b,385s stack positions out of 5000i,500n,6000p,200000b,15000s
+ 32i,15n,34p,1495b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -485,9 +485,9 @@ type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb>
 1/hoekwater/rsfs/rsfs10.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb><
 /usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main_Astr597_part.pdf (2 pages, 158267 bytes).
+Output written on main_Astr597_part.pdf (2 pages, 162172 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 9 named destinations out of 1000 (max. 131072)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 PDF objects out of 1000 (max. 8388607)
+ 10 named destinations out of 1000 (max. 131072)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

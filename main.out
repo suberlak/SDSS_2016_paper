@@ -3,14 +3,14 @@
 \BOOKMARK [2][-]{subsection.2.1}{Data Overview}{section.2}
 \BOOKMARK [2][-]{subsection.2.2}{Source Detection}{section.2}
 \BOOKMARK [2][-]{subsection.2.3}{Forced Photometry}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Lightcurve Metrics}{section.2}
-\BOOKMARK [2][-]{subsection.2.5}{Faint Sources}{section.2}
-\BOOKMARK [2][-]{subsection.2.6}{Photometric colors}{section.2}
-\BOOKMARK [2][-]{subsection.2.7}{Variability}{section.2}
-\BOOKMARK [2][-]{subsection.2.8}{Extinction Correction}{section.2}
+\BOOKMARK [2][-]{subsection.2.4}{Faint Sources}{section.2}
+\BOOKMARK [2][-]{subsection.2.5}{Data Processing Pipeline}{section.2}
+\BOOKMARK [2][-]{subsection.2.6}{Extinction Correction}{section.2}
+\BOOKMARK [2][-]{subsection.2.7}{Photometric colors}{section.2}
 \BOOKMARK [1][-]{section.3}{Results}{}
 \BOOKMARK [1][-]{section.4}{Conclusions}{}
 \BOOKMARK [1][-]{section.A1}{ Treatment of faint sources}{}
 \BOOKMARK [1][-]{section.A2}{ Characterizing variability}{}
 \BOOKMARK [1][-]{section.A3}{ Making of ugriz metrics }{}
 \BOOKMARK [1][-]{section.A4}{ Zero Flux Magnitudes }{}
+\BOOKMARK [1][-]{section.A5}{ Lightcurve Metrics}{}
