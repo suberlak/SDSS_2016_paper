@@ -105,55 +105,14 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 
 \end{abstract}
 
-\section{Introduction}
-Many objects in the universe, from stellar to extragalactic scales, vary on timescales less than a few hundred years. Lightcurves carry a wealth of information allowing one to infer various physical properties of a planet or a galaxy. If a lightcurve is poorly sampled, the inferred  characteristics are less certain. Yet, since all  astronomical observations suffer from a detection threshold, a very faint variable object in some epochs may be undetectable. Forced photometry rescues the information from very faint epochs by performing a measurement in all epochs in a location from the co-added images. An inherent challenge to such set of measurements is an intepretation of noise-dominated flux. To circumvent this problem many studies apply a magnitude cutoff few magnitudes above the detection limit, which reduces the amount of available data. Indeed, in order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, and properly characterize faint variable objects, we need to properly handle the faint flux measurements. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
 
 
-
-\section{Variability}
+\subsection{Faint Sources}
  
-
-
-
-Variations in object brightness  have two main origins:  an  error-induced noise, and an intrinsic variability. A lightcurve consists of a set of N measurements of brightness  $x_{i}$  with  errors  $e_{i}$. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic. We describe this distribution with two parameters : mean $\mu$, and width $\sigma$. To increase efficiency, we employ a two-step  approach after Ivezic+2014. 
-First, we find approximate values of  $\mu_{0}$ and $\sigma_{0}$, and then we evaluate the full logarithm of the posterior pdf in the vicinity of the approximate solution.
-With a Bayesian approach, we find $\mu_{full},\sigma_{full}$  by maximizing  the posterior probability distribution function (pdf) of  $\mu,\sigma$ given $x_{i}$ and $e_{i}$ : $p(\mu | {x_{i}},{\sigma_{i}})$ (see Fig.~\ref{fig:sigma_example}, and Appendix B for the detailed calculation). 
-
-For each lightcurve, we also calculate mean-based $\chi^{2}_{DOF}$ and median-based $\chi^{2}_{R}$ (the latter is more robust against any outliers in the distribution) : 
-
-\begin{equation}
-\label{eqn:chi2DOF}
-\chi^{2}_{dof} = \frac{1}{N-1}\sum{\left( \frac{x_{i} - <x_{i}>} {e_{i}} \right) ^{2}}
-\end{equation}
-
-\noindent and
- 
-\begin{equation}
-\label{eqn:chi2R}
-\chi^{2}_{R} = 0.7414 (Z_{75\%} - Z_{25\%} ) 
-\end{equation}
-
-\noindent with $Z=(x_{i} - median(x_{i})) / e_{i} $. 
-\bigskip
-
-
-Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ for the entire lightcurve. Then, only if  either $\sigma_{full}>0$ or $\chi^{2}>1 $, which hints some intrinsic variability, we also calculate $\mu_{full}$, $\sigma_{full}$, and $\chi^{2}$ for the seasonally-binned portions of the lightcurve.   
-
-
-\begin{figure*}
-\label{fig:sigma_example}
-\includegraphics[width=\textwidth]{Fig_5-8_AstroML_obj_217720894888346446_.png}
-\cprotect\caption{Two-step approach to finding $\mu$ and $\sigma$ via $\mu_{0}$ and $\sigma_{0}$ for an object 217720894888346446. In this calculation we use raw psf flux, before employing the faint source treatment outlined in Section~\ref{sec:faint_sources}. On the left and middle panels,  solid lines trace marginalized posterior pdfs for $\mu$ and $\sigma$ , while dashed lines depict histogram distributions of 10,000 bootstrap resamples for $\mu_{0}$ and $\sigma_{0}$. The right panel shows the logarithm of the posterior probability density function for $\mu$ and $\sigma$.}
-\end{figure*}
-
-On Fig.~\ref{fig:sigma_example} we plot the stages of calculating $\mu$ and $\sigma$. Left and middle panels compare the two methods of calculating variability parameters. The initial approximation (dashed) is based on bootstrapped resampling of ($x_i$, $e_i$) points from  the lightcurve. By randomly resampling the lightcurve $M$ times, instead of a single sample with $N \approx 10-70 $ points  we have $M$ samples. The histogram of  $M=1000$ values for $\mu$, $\sigma$ from resampling is plotted with dashed lines. 
-We use the approximate values to provide bounds for the $200 x 70$ grid of $\mu$, $\sigma$, used to evaluate the full posterior likelihood density function (right panel). This ensures that, despite using a coarse grid to improve computational speed,  we still resolve the peak of the underlying distribution. 
-
-
+Forced photometry measurement in a single epoch  is in fact the mean of a likelihood for the observed flux. We can think of each source as  being represented by a Gaussian likelihood centered on the measured flux $F_{i}$, with a widh corresponding to the measurement error $\sigma_{i}$. Thus in the flux likelihood space bright sources have very narrow Gaussians, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag, whereas faint sources with larger uncertainties have very wide Gaussian tails, that can extend  below zero.  Such nonzero likelihood for a negative flux measurement is unphysical, given that we know that no source can in  reality have a negative flux. Any negative portion of the likelihood stems from the background fluctuation, as described in previous section, or from very large measurement error. We address the issue of negative tails of Gaussian flux likelihood by recalculating the measurement of flux for all sources  with less than $'2\sigma'$ detection, i.e. $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  (in a  Gaussian likelihood).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

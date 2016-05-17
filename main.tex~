@@ -196,10 +196,13 @@ Both for median and for the $2\sigma$ level the normalization cancels out. For d
 In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$. For all objects we calculate statistics based on entire lightcurves. We denote $(F_{obs}, \sigma_{obs})$ as $(x_{i},\sigma_{i})$ : 
 
 - mean weighted by  $w_{i} = (\sigma_{i})^{-2}$
-
+%\begin{gather*}
 \begin{equation}
+%\begin{align}
 \bar{x} = \frac{\sum_{i=1}^{N}{w_{i}x_{i}}}{\sum_{i=1}^{N}{w_{i}}}
+%\end{align}
 \end{equation}
+%\end{gather*}
 
 - weighted mean error 
 \begin{equation}
@@ -212,9 +215,11 @@ In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$
 \end{equation}
 
 - error on standard deviation 
-
+\begin{equation}
+\sigma_{s} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}} \sigma_{\bar{x}}
+\end{equation}
 - robust interquartile width
-
+$\sigma_{G} = 0.7414 * (75\% - 25\%) $
 
 - median as the 50-th percentile , median error 
 $\sigma_{median} = \sqrt{\pi/2}\sigma_{\bar{x}}$
@@ -231,30 +236,9 @@ $\sigma_{median} = \sqrt{\pi/2}\sigma_{\bar{x}}$
 %\end{figure}
 
 
-\subsection{Photometric colors}
 
-Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling (see Fig.~\ref{fig:lc_example}).  
+\subsubsection{Variability Characteristics}
 
-\begin{figure}
-\label{fig:lc_example}
- \includegraphics[width=\columnwidth]{Lightcurve_full_obj_217720894888346422.png}
- \cprotect\caption{A plot showing an example lightcurve for an object id 217720894888346422. Jan 1st of each year (blue),  August 1st of 2005 (orange) and August 1st of each subsequent year (red) is indicated by vertical dashed lines. Observations prior to August 1st of 2005 have sparser cadence, whereas those after that date have more frequent observations.  This is due to the SDSS-III Supernova Survey which begun  Sept 1st 2005.  All points to the left of August 1st 2005 (orange line) are averaged together.  Points to the right of August 1st 2005 are seasonally averaged. }
-\end{figure}
-
-Thus for a given object we average all sparser observations prior before SDSS-III, and calculate annual averages for all subsequent years. We calculate weighted mean and the rms as 
-\begin{equation}
-<F> = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
-\sigma_{<F>} = \left( \sum{w_{i}}\right) ^{-1/2} 
-\end{equation}
-
-with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate the robust  median and the median error : $\sqrt{\pi / 2} \, \sigma_{F}$  [ robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $ , based on the interquartile range] . Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $meanErr$) or ($median$, $medianErr$).
-
-
-The resulting average flux is converted to magnitude, and the color is  $c = m_{x}-m_{y}$, with combined errors of band lightcurves added in quadrature
-
-\subsection{Variability}
-
- 
 Variations in object brightness  have two main origins:  an  error-induced noise, and an intrinsic variability. A lightcurve consists of a set of N measurements of brightness  $x_{i}$  with  errors  $e_{i}$. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic. We describe this distribution with two parameters : mean $\mu$, and width $\sigma$. To increase efficiency, we employ a two-step  approach after Ivezic+2014. 
 First, we find approximate values of  $\mu_{0}$ and $\sigma_{0}$, and then we evaluate the full logarithm of the posterior pdf in the vicinity of the approximate solution.
 With a Bayesian approach, we find $\mu_{full},\sigma_{full}$  by maximizing  the posterior probability distribution function (pdf) of  $\mu,\sigma$ given $x_{i}$ and $e_{i}$ : $p(\mu | {x_{i}},{\sigma_{i}})$ (see Fig.~\ref{fig:sigma_example}, and Appendix B for the detailed calculation). 
@@ -276,9 +260,6 @@ For each lightcurve, we also calculate mean-based $\chi^{2}_{DOF}$ and median-ba
 \noindent with $Z=(x_{i} - median(x_{i})) / e_{i} $. 
 \bigskip
 
-
-Initially, we evaluate $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ for the entire lightcurve. Then, only if  either $\sigma_{full}>0$ or $\chi^{2}>1 $, which hints some intrinsic variability, we also calculate $\mu_{full}$, $\sigma_{full}$, and $\chi^{2}$ for the seasonally-binned portions of the lightcurve.   
-
 \begin{figure*}
 \label{fig:sigma_example}
 \includegraphics[width=\textwidth]{Fig_5-8_AstroML_obj_217720894888346446_.png}
@@ -296,6 +277,12 @@ We use the approximate values to provide bounds for the $200 x 70$ grid of $\mu$
  \cprotect\caption{A plot showing an outcome of seasonal averaging for an object id 217720894888346425. The left panel (red dots) shows  (mean, meanErr),  and the right panel (orange) shows (median,medianErr), instead of seasonal points (blue). Vertical dashed lines as on Fig.~\ref{fig:lc_example}}
 \end{figure*}
 
+\subsubsection{Variable Candidates Selection}
+All variability parameters describe in a certain way the lightcurve variability. $\sigma_{full}$  corresponds to the spread of the flux distribution. For a non-variable source, $\chi^{2}$ would be centered about 1, with a width $\sigma$ of $\sqrt{2/N}$, where $N$ is the number of points per lightcurve. Thus we would expect that for any distribution $50\%$ of sources would have $\chi^{2}>1$. Therefore a $"3\sigma"$ variability detection would require $\chi^{2} > \chi^{2}_{limit}$, with $\chi^{2}_{limit} = 1 + 3\sqrt{2/N}$
+We call a source a 'robust variability candidate' if $\sigma_{full}>0$ and ($\chi^{2}_{DOF} > \chi^{2}_{limit}$ or $\chi^{2}_{R} > \chi^{2}_{limit}$), i.e. we require the full $\sigma$ to be larger than 0, and either robust or DOF $\chi^{2}$ to be larger than the limiting $\chi^{2}$. 
+
+\subsubsection{Seasonal Statistics}
+Initially, we evaluate variability parameters $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ based on all points of the lightcurve. Only for variable sources, as defined above, we calculate the variability parameters for the seasonally-binned portions of the lightcurve. The $\chi^{2}_{DOF}$ vs. $\chi^{2}_{R}$ plotted on Fig. ...  shows that these distributions are similar for seasons as well as full lightcurves.    
 
 
 \subsection{Extinction Correction}
@@ -311,6 +298,29 @@ Since the reported fluxes are not extinction-corrected, we use a table of E(B-V)
  \cprotect\caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness | parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact.  }
 \end{figure}
 % 
+\subsection{Photometric colors}
+
+Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling (see Fig.~\ref{fig:lc_example}).  
+
+\begin{figure}
+\label{fig:lc_example}
+ \includegraphics[width=\columnwidth]{Lightcurve_full_obj_217720894888346422.png}
+ \cprotect\caption{A plot showing an example lightcurve for an object id 217720894888346422. Jan 1st of each year (blue),  August 1st of 2005 (orange) and August 1st of each subsequent year (red) is indicated by vertical dashed lines. Observations prior to August 1st of 2005 have sparser cadence, whereas those after that date have more frequent observations.  This is due to the SDSS-III Supernova Survey which begun  Sept 1st 2005.  All points to the left of August 1st 2005 (orange line) are averaged together.  Points to the right of August 1st 2005 are seasonally averaged. }
+\end{figure}
+
+Thus for a given object we average all sparser observations prior before SDSS-III, and calculate annual averages for all subsequent years. We calculate weighted mean and the rms as 
+\begin{equation}
+<F> = \frac{\sum {w_{i}F_{i}}}{\sum{w_{i}}} \\
+\sigma_{<F>} = \left( \sum{w_{i}}\right) ^{-1/2} 
+\end{equation}
+
+with weights as  $w_{i} = 1 / \sigma_{i}^{2}$. We also calculate the robust  median and the median error : $\sqrt{\pi / 2} \, \sigma_{F}$  [ robust $\sigma_{G} = 0.7414 * (75\% - 25\%) $ , based on the interquartile range] . Then lightcurve for a given object is reduced to one ($F_{i}, \sigma_{i}$) point prior to March 2006, and a single point per every subsequent year, where  ($F_{i}, \sigma_{i}$) is ($mean$, $meanErr$) or ($median$, $medianErr$).
+
+
+The resulting average flux is converted to magnitude, and the color is  $c = m_{x}-m_{y}$, with combined errors of band lightcurves added in quadrature
+
+
+
 
 \section{Results}
 \label{sec:results}
