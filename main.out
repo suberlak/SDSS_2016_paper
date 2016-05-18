@@ -1,12 +1,7 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}
-\BOOKMARK [1][-]{section.2}{Data Analysis}{}
+\BOOKMARK [1][-]{section.2}{Methods}{}
 \BOOKMARK [2][-]{subsection.2.1}{Data Overview}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{Source Detection}{section.2}
-\BOOKMARK [2][-]{subsection.2.3}{Forced Photometry}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Faint Sources}{section.2}
-\BOOKMARK [2][-]{subsection.2.5}{Data Processing Pipeline}{section.2}
-\BOOKMARK [2][-]{subsection.2.6}{Extinction Correction}{section.2}
-\BOOKMARK [2][-]{subsection.2.7}{Photometric colors}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Analysis}{section.2}
 \BOOKMARK [1][-]{section.3}{Results}{}
 \BOOKMARK [1][-]{section.4}{Conclusions}{}
 \BOOKMARK [1][-]{section.A1}{ Treatment of faint sources}{}

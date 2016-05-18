@@ -114,34 +114,47 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 \label{sec:intro}
 Many objects in the universe, from stellar to extragalactic scales, vary on timescales less than a few hundred years. Lightcurves carry a wealth of information allowing one to infer various physical properties of a planet or a galaxy. If a lightcurve is poorly sampled, the inferred  characteristics are less certain. Yet, since all  astronomical observations suffer from a detection threshold, a very faint variable object in some epochs may be undetectable. Forced photometry rescues the information from very faint epochs by performing a measurement in all epochs in a location from the co-added images. An inherent challenge to such set of measurements is an intepretation of noise-dominated flux. To circumvent this problem many studies apply a magnitude cutoff few magnitudes above the detection limit, which reduces the amount of available data. Indeed, in order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, and properly characterize faint variable objects, we need to properly handle the faint flux measurements. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
 
-\section{Data Analysis}
-\label{sec:data}
+\section{Methods}
+
 
 \subsection{Data Overview}
+\label{sec:data}
+\subsubsection{Stripe 82}
 We use data from all SDSS runs up to an including run 7202 (Data Release 7), including all 6 SDSS camera columns. Stripe 82 survey covered an equatorial strip of the sky, defined by declination limits of $\pm1.27\deg$, extending from R.A. $\approx$ $20^{h} (320 \deg)$ to R.A.  $\approx$ $4^{h} (55 \deg)$ (Sesar+2010). Observations conducted prior to September 2005 (part of SDSS I-II) had a more sparse sampling than SDSS-III, and the SDSS Supernova Survey, which ran between September 1st - November 30th each year between 2005-2007. 
 
 The SDSS Stripe 82 DR7  data  was processed in two data centers : NCSA (National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign, IL) and IN2P3  (Institut national de physique nucl\'eaire et de physique des particules in Paris, France). NCSA processed data from $-40 \deg \, (+320 \deg) < RA < +10 \deg $ and IN2P3 with $ +5 \deg < RA < +55 \deg$ . There is a $5 \deg$ overlap, used to confirm that the data processing pipeline in both data centers yields identical data products. The entire strip was split into smaller patches
 
 All epochs (individual images) were background-subtracted, and then scaled from the Digital Unit counts to fluxes by comparing standard objects against the Ivezic+2007 catalog  (similar to  Jiang+2014).   
 
-\subsection{Source Detection}
+\subsubsection{Source Detection}
 Sources were detected in the i-band coadds. Each detection in the coadded images was assigned a deepSourceId (elsewhere called objectId). Considering  a dense region with clumped stars and/or galaxies, the entire clump was considered as one parent source (with single ParentSourceId). For an object which is a parent (eg. a galaxy), ParentSourceId is null. Solitary sources which are not blended  in clumps are their own parents. The result of this procedure were $~40$ million  i-band detections down to $3 \, \sigma$.  $8$ million of those are brighter than $23^{rd}$ mag. Part of Stripe82 processed in NCSA yielded  $20978391$ detections (\verb|iCoaddAll.csv|). The part that does not overlap with IN2P3 has   $16520093$ sources (\verb|iCoaddPhotometryAll.csv|), of which  $16514187$ are brighter than $30^{mag}$  ($5906$ less) (\verb|DeepSourceNCSA_i_lt300.csv|).
 
-\subsection{Forced Photometry}
+\subsubsection{Forced Photometry}
 On positions specified by the detection data AlSayyad+2015 performed forced photometry in all SDSS photometric bands, on the individual epoch images. It is different from image differences technique, where the photometry is done on a difference between a coadd and an individual epoch image.  The total number of photometric measurements (combining NCSA and IN2P3) was  ($40$  million i-band detections) x ($80$ epochs ) x ($5$ filters) = $~16$ billion measurements, including   ($8$ million i-band detections i < 23) x ($80$ epochs) x ($5$ filters ) = $3.2$ billion measurements brighter than $23^{rd}$ mag.
-
-Since an image for each epoch is background-subtracted, and the noise level fluctuates about zero,  the flux reported in an aperture at some locations may be smaller than zero. 
-
-This can be understood realizing that background in the  optical bands is bright. We can calculate the likelihood of false detections, i.e. the background noise being confused for a source flux, in a following way. If we assume that the measured number of background counts oscillates around the value $B_{0}$, then the measured background count $B$  is distributed as  a Gaussian of width $\sigma_{B}$ :   $B-B_{0}  ~  \mathcal{N}(0,\sigma_{B})$. The noise is Poissonian, i.e. depends on  the number of counts, and since for optical mesaurements the number of counts is large,  $\sigma_{B} = \sqrt {B}$. Therefore, on a 4kx4k  CCD, with 16 Mpix, at the $5\sigma$ level (corresponding  to  1 false detection in a million), we would expect about 16 false detections.  
-
 For each patch the raw lightcurves contain the \verb|id|, \verb|objectId|, \verb|exposure_id|, \verb|mjd|, \verb|psfFlux|, \verb|psfFluxErr|, sorted by \verb|objectId|, measuring flux in $[ergs/ cm^{2} / sec / Hz]$ (\verb|rawDataFPSplit/bandPatchStart_PatchEnd.csv|). 
 
 
 
+\subsection{Analysis}
 
-\subsection{Faint Sources}
+\subsubsection{Faint Sources}
 \label{sec:faint_sources}
-Forced photometry measurement in a single epoch  is in fact the mean of a likelihood for the observed flux. We can think of each source as  being represented by a Gaussian likelihood centered on the measured flux $F_{i}$, with a widh corresponding to the measurement error $\sigma_{i}$. Thus in the flux likelihood space bright sources have very narrow Gaussians, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag, whereas faint sources with larger uncertainties have very wide Gaussian tails, that can extend  below zero.  Such nonzero likelihood for a negative flux measurement is unphysical, given that we know that no source can in  reality have a negative flux. Any negative portion of the likelihood stems from the background fluctuation, as described in previous section, or from very large measurement error. We address the issue of negative tails of Gaussian flux likelihood by recalculating the measurement of flux for all sources  with less than $'2\sigma'$ detection, i.e. $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  (in a  Gaussian likelihood).
+
+%
+%%%%%%%%%%%%%%%%% MOTIVATION %%%%%%%%%%%%%%%%%
+%
+Each measurement of flux is affected by the background noise.  The bright optical background can have two contributions to faint source detection. First, the oscillation of background around the mean may lead to spurious detections. We can understand it by modelling the distribution of background counts as a Gaussian centered around the mean value $B_{0}$ :   $B-B_{0}  ~  \mathcal{N}(0,\sigma_{B})$. The noise itself is Poissonian, and for a large number of photons hitting the detector the width of the distribution $\sigma_{B}$ is proportional to the square-root of counts: $\sqrt {B}$. Thus on a 4kx4k CCD, similar to those used by SDSS, we would expect about 1 false detection in a million at $5\sigma$ level - 16 per CCD.  
+Second contribution of background variation is the unphysically low flux at source location. Since the background oscillates around a mean value, an individual epoch may have a lower-than-average background value which after mean background subtraction yields a negative value of flux at source location. Thus especially for variable sources, the location where it was detected in coadds may have a negative flux value because if the source is below detection threshold in an individual epoch, we are measuring the background noise oscillation. The background noise can significantly affect the measurement if it is as strong as the flux of a source in some epochs. 
+
+%
+%%%%%%%%%%%%%%%%% TREATMENT %%%%%%%%%%%%%%%%%
+%
+
+We recalculate the flux for all 'faint' ($< 2\sigma$) sources  by truncating the flux likelihood function. Each forced photometry 'observed' flux in a single epoch can be thought of as a  mean of the 'intrinsic' flux likelihood. Such Gaussian likelihood is centered on the 'observed' flux $F$, with a width corresponding to the measurement error $\sigma_{F}$ :  $L(F) ~ \mathcal{N}(F,\sigma_{F})$  . For example,  the bright sources can be thought of as having a very narrow Gaussian likelihood, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag. On the other hand, the faint sources, with larger uncertainties, have very wide Gaussian tails. The tails of their likelihood can extend below zero, and thus the forced-photometry measurement is underestimating the flux. In reality no physical source of flux can have a negative flux. This negative portion of the likelihood stems from the background fluctuation, or small signal to noise ratio. We address the issue of unphysical likelihood and underestimated flux by recalculating flux for all sources  with less than $'2\sigma'$ detection. This means that we recalculate flux for sources where there is a $2\%$ or higher probability of negative flux. 
+
+%
+%%%%%%%%%%%%%%%%% CHOICE OF PRIOR %%%%%%%%%%%%%%%%%
+%
 
 In our treatment we are explicitly using a prior understanding of the flux behavior of any astrophysical object.  Without any further knowledge about the nature of the source, flat prior is the least informative Bayesian prior. Any additional information about the nature of object, and thus expected variability pattern,  could affect the choice of prior to be more specific. For instance,  consider a sinusoidal flux variability. If the flux of an object over many epochs is expected to vary in a sinusoidal fashion, i.e. $F(t) = F_{min}+ sin(t)$, the probability of a given  flux measurement is a cosine, ranging from $F_{min}$ to $F_{max}$. With that prior, without any measurement taken, the flux of the object is most likely  $(F_{min} + F_{max}) /  2$, i.e. at the peak of the cosine likelihood function. However, as soon as one measures $(F_{i},e_{i})$ from that source, the probability distribution of a flux at that epoch becomes a convolution of cosine prior information with the Gaussian curve of width $e_{i}$, centered on $F_{i}$ (assuming Gaussian errors). However, without any a-priori information about the variability pattern of the considered object, the least informative Bayesian prior we can impose is a flat one : $p(F)=0 $ for $F<0$, and $1$ elsewhere. Thus the posterior probability is 
 
@@ -149,16 +162,18 @@ In our treatment we are explicitly using a prior understanding of the flux behav
 p(F|data) \propto L(F|data) p(F)
 \end{equation}
 
-\subsubsection{Faint Method Test }
+
+%
+%%%%%%%%%%%%%%%%% WHAT WE CALCULATE %%%%%%%%%%%%%%%%%
+%
+
 To test the method we generate fiducial lightcurves (DRW / sinusoidal), with a uniform sampling ($N=100\div1000$). Based on the generated flux ($F_{true}$) we define the $5\sigma$ level as the robust 25-th percentile (or median) of the ensemble $F_{true}$ distribution :  $\sigma_{F} = (1/5)  F_{25 \%}$ (in reality, $\sigma$ increases for fainter observations, but this is a good approximation). 
 \newline
 We define $F_{obs} = F_{true} + F_{noise}$, where the Gaussian noise $F_{noise} = \sigma_{F}  \, \mathcal{N}(0,1)$ was added to each point. 
 For a weak signal, defined as $F_{obs}^{i} < 2 \sigma{F}$, we consider $p(F)$  - a  Gaussian  likelihood associated with $i$-th measurement: $p_{i}(F) = \mathcal{N}(\mu=F_{obs}^{i}, \sigma=\sigma_{F})$. Each measurement $F_{obs}$ is a mean of this likelihood: $F_{obs} = \langle p_{i}(F) \rangle$. We call it $p(F)$  for short : 
 
 
-\subsection{Data Processing Pipeline}
 
-\subsubsection{Faint source treatment}
 For each epoch, based on the raw forced photometry measurement, we calculate new descriptors of faint fluxes. We define a faint measurement by $F_{i} < 2 \sigma{F_{i}}$, i.e. where the flux is less than twice the flux error. We assume that the flux is the mean of the Gaussian likelihood  $p_{i}(F) = \mathcal{N}(\mu=F_{i}, \sigma=\sigma_{F_{i}})$ : 
 \begin{equation}
 p(F) = \frac{1}{\sqrt{2  \pi \sigma_{F}^{2}}} \exp{ \left(-\frac{(F-\mu)^{2}}{2\sigma_{F}^{2}}\right)}
@@ -192,7 +207,22 @@ Finally, since for a Gaussian distribution the area contained between $\mu \pm \
 
 Both for median and for the $2\sigma$ level the normalization cancels out. For details, see Appendix ... 
 
-\subsubsection{Lightcurve statistics}
+
+\subsubsection{Variability}
+
+
+%
+%%%%%%%%%%%%%%%%% MOTIVATION %%%%%%%%%%%%%%%%%
+%
+
+%\subsubsection{Lightcurve statistics}
+
+%
+%%%%%%%%%%%%%%%%% STATISTICS WE USE %%%%%%%%%%%%%%%%%
+%
+%
+%  STANDARD ONES 
+%
 In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$. For all objects we calculate statistics based on entire lightcurves. We denote $(F_{obs}, \sigma_{obs})$ as $(x_{i},\sigma_{i})$ : 
 
 - mean weighted by  $w_{i} = (\sigma_{i})^{-2}$
@@ -218,26 +248,30 @@ In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$
 \begin{equation}
 \sigma_{s} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}} \sigma_{\bar{x}}
 \end{equation}
+
 - robust interquartile width
-$\sigma_{G} = 0.7414 * (75\% - 25\%) $
+\begin{equation}
+\sigma_{G} = 0.7414 * (75\% - 25\%) 
+\end{equation}
 
 - median as the 50-th percentile , median error 
-$\sigma_{median} = \sqrt{\pi/2}\sigma_{\bar{x}}$
+\begin{equation}
+\sigma_{median} = \sqrt{\pi/2}\sigma_{\bar{x}}
+\end{equation}
  
 
-- skewness 
-
-
+%- skewness 
 
 %\begin{figure}
 %\label{fig:sim_lc}
 % \includegraphics[width=\columwidth]{Flux_exp_faint.png}
 %\caption{A portion of a simulated lightcurve with arbitrary time and flux units, where the simulated forced photometry flux is below the 2 sigma %%level. The simulated observed points that are below 2 sigma level,  may even drop below zero, and  are subjected to our algorithm correctiong for the unphysicality of such situation. Thus we impose the non-negative flat prior, and re-calculate the flux for each point using the truncated Gaussian likelihood, by finding either mean, median, or the two sigma upper limit of the measurement. }
 %\end{figure}
+%\subsubsection{Variability Characteristics}
 
-
-
-\subsubsection{Variability Characteristics}
+%
+%  ASTRO-ML MU AND SIGMA 
+%
 
 Variations in object brightness  have two main origins:  an  error-induced noise, and an intrinsic variability. A lightcurve consists of a set of N measurements of brightness  $x_{i}$  with  errors  $e_{i}$. In this analysis we assume that  $x_{i}$ are drawn from a Gaussian distribution  $\mathcal{N}(\mu,\sigma)$, and that errors $e_{i}$ are homoscedastic. We describe this distribution with two parameters : mean $\mu$, and width $\sigma$. To increase efficiency, we employ a two-step  approach after Ivezic+2014. 
 First, we find approximate values of  $\mu_{0}$ and $\sigma_{0}$, and then we evaluate the full logarithm of the posterior pdf in the vicinity of the approximate solution.
@@ -277,16 +311,51 @@ We use the approximate values to provide bounds for the $200 x 70$ grid of $\mu$
  \cprotect\caption{A plot showing an outcome of seasonal averaging for an object id 217720894888346425. The left panel (red dots) shows  (mean, meanErr),  and the right panel (orange) shows (median,medianErr), instead of seasonal points (blue). Vertical dashed lines as on Fig.~\ref{fig:lc_example}}
 \end{figure*}
 
-\subsubsection{Variable Candidates Selection}
+%\subsubsection{Variable Candidates Selection}
+
+%
+%%%%%%%%%%%%%%%%% TO WHAT DATA WE CALCULATE STATS  %%%%%%%%%%%%%%%%%
+%
+
+%
+% FIRST SWIPE : FULL LIGHTCURVES 
+%
+
+%
+% DEFINITION OF VARIABILITY 
+% 
 All variability parameters describe in a certain way the lightcurve variability. $\sigma_{full}$  corresponds to the spread of the flux distribution. For a non-variable source, $\chi^{2}$ would be centered about 1, with a width $\sigma$ of $\sqrt{2/N}$, where $N$ is the number of points per lightcurve. Thus we would expect that for any distribution $50\%$ of sources would have $\chi^{2}>1$. Therefore a $"3\sigma"$ variability detection would require $\chi^{2} > \chi^{2}_{limit}$, with $\chi^{2}_{limit} = 1 + 3\sqrt{2/N}$
 We call a source a 'robust variability candidate' if $\sigma_{full}>0$ and ($\chi^{2}_{DOF} > \chi^{2}_{limit}$ or $\chi^{2}_{R} > \chi^{2}_{limit}$), i.e. we require the full $\sigma$ to be larger than 0, and either robust or DOF $\chi^{2}$ to be larger than the limiting $\chi^{2}$. 
 
-\subsubsection{Seasonal Statistics}
+%
+% DEFINITION OF A SEASON
+% 
+
+%\subsubsection{Seasonal Statistics}
 Initially, we evaluate variability parameters $\mu_{full}$, $\sigma_{full}$, $\chi^{2}_{dof}$, and $\chi^{2}_{R}$ based on all points of the lightcurve. Only for variable sources, as defined above, we calculate the variability parameters for the seasonally-binned portions of the lightcurve. The $\chi^{2}_{DOF}$ vs. $\chi^{2}_{R}$ plotted on Fig. ...  shows that these distributions are similar for seasons as well as full lightcurves.    
 
+%
+% SECOND SWIPE : SEASONS AND SEASONALLY-BINNED LIGHTCURVES 
+% 
 
-\subsection{Extinction Correction}
 
+
+\subsubsection{Colors}
+%
+%%%%%%%%%%%%%%%%% WHY WE NEED COLORS  %%%%%%%%%%%%%%%%%
+%
+
+
+%
+%%%%%%%%%%%%%%%%% OUR CONVENTION ON CALCULATING MAGNITUDES  %%%%%%%%%%%%%%%%%
+%
+
+
+%
+%%%%%%%%%%%%%%%%% EXTINCTION CORRECTION  %%%%%%%%%%%%%%%%%
+%
+
+%\subsection{Extinction Correction}
 Since the reported fluxes are not extinction-corrected, we use a table of E(B-V) in a direction of a given source to correct for the galactic extinction. We use the formula  $x_{corr}  = x_{obs} + A_{x} * E(B-V)$, where $x$ is  u,g,r,i,z , and $A_x$ is 5.155, 3.793, 2.751, 2.086, 1.479  for each filter respectively  [Schlegel 98, Av are for RV = 3.1, also suggested by Eddie Schlafly] 
 
 
@@ -298,7 +367,7 @@ Since the reported fluxes are not extinction-corrected, we use a table of E(B-V)
  \cprotect\caption{A plot showing NCSA sources detected in coadds, removing the outliers beyond the edges of the plot. The coloring corresponds to the \verb|extendedness | parameter calculated in the pipeline based on the iPsfMag-iModelMag : red being 0 (compact), and green being 1 (extended). As iModelMag increases, the separation becomes less certain, as more distant galaxies are more compact.  }
 \end{figure}
 % 
-\subsection{Photometric colors}
+%\subsection{Photometric colors}
 
 Colors $x-y$ for an object with observations over many epochs are defined as the difference in magnitudes $m_{x} - m_{y}$. To find $m_{x}$, we need to define the average brightness of an object in  a given filter. With a special treatment of faint sources, substituting ($F_{obs}$,$\sigma_F$) for each faint observation by ($<F_{exp}>$,$rms$), we analyse updated lightcurves, addressing sparse sampling (see Fig.~\ref{fig:lc_example}).  
 
