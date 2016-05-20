@@ -92,7 +92,7 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 \date{Accepted XXX. Received YYY; in original form ZZZ}
 
 % Enter the current year, for the copyright statements etc.
-\pubyear{2015}
+\pubyear{2016}
 
 % Don't change these lines
 \begin{document}
@@ -105,18 +105,27 @@ $^{1}$Department of Astronomy, University of Washington, Seattle, WA, United Sta
 
 \end{abstract}
 
-\section{Introduction}
-Many objects in the universe, from stellar to extragalactic scales, vary on timescales less than a few hundred years. Lightcurves carry a wealth of information allowing one to infer various physical properties of a planet or a galaxy. If a lightcurve is poorly sampled, the inferred  characteristics are less certain. Yet, since all  astronomical observations suffer from a detection threshold, a very faint variable object in some epochs may be undetectable. Forced photometry rescues the information from very faint epochs by performing a measurement in all epochs in a location from the co-added images. An inherent challenge to such set of measurements is an intepretation of noise-dominated flux. To circumvent this problem many studies apply a magnitude cutoff few magnitudes above the detection limit, which reduces the amount of available data. Indeed, in order to fully utilize information present in time-domain surveys, such as Large Scale Synoptic Telescope, Palomar Transient Factory, or Sloan Digital Sky Survey, and properly characterize faint variable objects, we need to properly handle the faint flux measurements. A new methodology would allow an unbiased  study of such faint variable objects, including quasars,  RR Lyrae,  Cepheids, and a wealth of other variable sources.  With the advent of precision  time-domain astronomy  surveys it is crucial to apply the best possible faint forced photometry algorithms and thus make full use of the  data.  
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
 
 
-\subsection{Faint Sources}
- 
-Forced photometry measurement in a single epoch  is in fact the mean of a likelihood for the observed flux. We can think of each source as  being represented by a Gaussian likelihood centered on the measured flux $F_{i}$, with a widh corresponding to the measurement error $\sigma_{i}$. Thus in the flux likelihood space bright sources have very narrow Gaussians, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag, whereas faint sources with larger uncertainties have very wide Gaussian tails, that can extend  below zero.  Such nonzero likelihood for a negative flux measurement is unphysical, given that we know that no source can in  reality have a negative flux. Any negative portion of the likelihood stems from the background fluctuation, as described in previous section, or from very large measurement error. We address the issue of negative tails of Gaussian flux likelihood by recalculating the measurement of flux for all sources  with less than $'2\sigma'$ detection, i.e. $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  (in a  Gaussian likelihood).
+\section{Assignment 6 paragraph}
+\subsection{before}
+Each measurement of flux is affected by the background noise.  The bright optical background can have two contributions to faint source detection. First, the oscillation of background around the mean may lead to spurious detections. We can understand it by modelling the distribution of background counts as a Gaussian centered around the mean value $B_{0}$ :   $B-B_{0}  \sim  \mathcal{N}(0,\sigma_{B})$. The noise itself is Poissonian, and for a large number of photons hitting the detector the width of the distribution $\sigma_{B}$ is proportional to the square-root of counts: $\sqrt {B}$. Thus on a 4kx4k CCD, similar to those used by SDSS, we would expect about 1 false detection in a million at $5\sigma$ level - 16 per CCD.  
+Second contribution of background variation is the unphysically low flux at source location. Since the background oscillates around a mean value, an individual epoch may have a lower-than-average background value which after mean background subtraction yields a negative value of flux at source location. Thus especially for variable sources, the location where it was detected in coadds may have a negative flux value because if the source is below detection threshold in an individual epoch, we are measuring the background noise oscillation. The background noise can significantly affect the measurement if it is as strong as the flux of a source in some epochs. 
+\subsection{after}
+Forced photometry in a background-subtracted epoch may yield unphysical, negative values. Such negative pixel value may originate from the variation of background across the image. If we model the background counts  as a Gaussian centered around the mean  $B_{0}$ :   $B-B_{0}  \sim  \mathcal{N}(0,\sigma_{B})$, then background in some parts of the image will be above, and in other parts below the mean value. After subtraction of the mean background value, regions with previously lower than average background will have negative pixel value.  This means that a forced photometry on a location where an object is undetected in single epoch may be measuring the background noise. Apart from creating low pixel values, background oscillation may also cause spurious detections where it is above the mean. For a large number of photons hitting the detector the width of the background noise distribution is  proportional to the square-root of counts: $\sigma_{B} ~ \sqrt {B}$. This yields a 1 in a million chance that a pixel has a background value larger than $5\sigma_{B}$.   Thus on a 16 megapixel CCD, like those used in SDSS, we anticipate  about  16 spuriously bright pixels  per CCD.  Therefore,  since forced photometry is affected by  the background noise, a special care must be taken of faint, noise-dominated measurements. 
 
+\section{Assignment 5 paragraph}
+\subsection{before} 
+Forced photometry measurement in a single epoch  is in fact the mean of a likelihood for the observed flux. We can think of each source as  being represented by a Gaussian likelihood centered on the measured flux $F_{i}$, with a widh corresponding to the measurement error $\sigma_{i}$. Thus in the flux likelihood space bright sources have very narrow Gaussians, with a width on the level of $1-2 \%  \approx 0.01-0.02$ mag, whereas faint sources with larger uncertainties have very wide Gaussian tails, that can extend  below zero.  Such nonzero likelihood for a negative flux measurement is unphysical, given that we know that no source can in  reality have a negative flux. Any negative portion of the likelihood stems from the background fluctuation, as described in previous section, or from very large measurement error. We address the issue of negative tails of Gaussian flux likelihood by recalculating the measurement of flux for all sources  with less than $'2\sigma'$ detection, i.e. $ \langle F_{L} \rangle  < k \sigma$, with $k=2$. This corresponds to the $2\%$ probability of $F_{L} < 0$  (in a  Gaussian likelihood).
+\subsection{after Ass 6 corrections}
+We remedy the unphysically low, even negative measurements for all 'faint' ($< 2\sigma$) sources and recalculate their fluxes. Each flux measurement can  be thought of as a  mean of the 'intrinsic' flux likelihood function $L(F)$. $L$ determines the probability that the flux has a value $F$. In our treatment we assume that $L$ is a Gaussian, and therefore its width corresponds to the measurement error :  $L(F) \sim \mathcal{N}(F,\sigma_{F})$. This means that bright sources with high signal-to-noise ratio have very narrow  $L$, and faint sources, dominated by noise, have $L$ with very wide tails.  Only for faint sources a significant portion of $L$ may be negative, corresponding to non-zero likelihood of flux being negative. This stands in conflict with our prior knowledge that no physical flux can be negative. We resolve this problem by recalculating single-epoch flux for all sources where $F < 2 \sigma_{F}$. We calculate for each epoch the mean of the truncated $L$, such that $L(F) = 0$ for $F<0$.  This shifts upward all measurements for faint epochs, and remedies the unphysicality of faint forced photometry fluxes.   
+
+
+
+\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%

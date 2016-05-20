@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  17 MAY 2016 17:11
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.9.3)  20 MAY 2016 15:25
 entering extended mode
  %&-line parsing enabled.
 **main.tex
@@ -436,13 +436,13 @@ Underfull \hbox (badness 1067) in paragraph at lines 133--135
 \T1/aer/m/n/9 per-formed forced pho-tom-e-try in all SDSS pho-to-met-ric
  []
 
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 148.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 147.
 
 (/usr/share/texmf/tex/latex/ae/omsaer.fd
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 148.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 147.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -498,21 +498,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 431.
+(hyperref)                removing `\\' on input line 430.
 
 [4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.450 \end{multline}
+l.449 \end{multline}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.2}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.450 \end{multline}
+l.449 \end{multline}
                      <./Fig_5-8_AstroML_obj_217720894888346446_.png> <./Lightcu
 rve_full_seasonal_obj_217720894888346425.png>]
-Overfull \hbox (0.54346pt too wide) detected at line 526
+Overfull \hbox (0.54346pt too wide) detected at line 525
  []$[]  [][] [] \OT1/ztmcm/m/n/9 = [][] [] \OMS/ztmcm/m/n/9 ^^@ [][] [] \OT1/zt
 mcm/m/n/9 = [](\OML/ztmcm/m/it/9 z[]\OT1/ztmcm/m/n/9 ) \OMS/ztmcm/m/n/9 ^^@ []\
 OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []  
@@ -522,12 +522,12 @@ OT1/ztmcm/m/n/9 (\OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$ []
 has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.526 \end{multline}
+l.525 \end{multline}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.4}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.526 \end{multline}
+l.525 \end{multline}
                      <./Extendedness_coadd_data_16520093_srcs_lim.png> <./Light
 curve_full_obj_217720894888346422.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -536,15 +536,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.526 \end{multline}
+l.525 \end{multline}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.6}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.526 \end{multline}
+l.525 \end{multline}
                      <./Fig_g-i_vs_i_ra_310-360hist_n_50row_ext_0.png> <./Exten
 dedness_coadd_histograms.png>]
-Overfull \hbox (1.84811pt too wide) detected at line 581
+Overfull \hbox (1.84811pt too wide) detected at line 580
 $[] \OT1/ztmcm/m/n/9 = [] [] [] + []\OML/ztmcm/m/it/9 e[]\OT1/ztmcm/m/n/9 (2^^A
 \OML/ztmcm/m/it/9 x \OMS/ztmcm/m/n/9 ^^@ \OML/ztmcm/m/it/9 x[]\OT1/ztmcm/m/n/9 
 ) + (^^A\OML/ztmcm/m/it/9 x\OT1/ztmcm/m/n/9 )[] [](\OMS/ztmcm/m/n/9 ^^@\OML/ztm
@@ -553,44 +553,48 @@ cm/m/it/9 x[]\OT1/ztmcm/m/n/9 )$
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 584.
+(hyperref)                removing `\\' on input line 583.
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 641.
+(hyperref)                removing `\\' on input line 640.
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 644--646
+Underfull \hbox (badness 1005) in paragraph at lines 643--645
 \T1/aer/m/n/9 Colors can be cal-cu-lated in two ways: us-ing the me-
  []
 
 [7]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 647.
+(hyperref)                removing `\\' on input line 646.
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
-(hyperref)                removing `\\' on input line 652.
+(hyperref)                removing `\\' on input line 651.
 
 
-Underfull \hbox (badness 3503) in paragraph at lines 656--658
+Underfull \hbox (badness 3503) in paragraph at lines 655--657
 \T1/aer/m/n/9 mean weighted by the []\T1/aett/m/n/9 WVar \T1/aer/m/n/9 - the in
 -verse vari-ance
  []
 
 
-Underfull \hbox (badness 2478) in paragraph at lines 656--658
+Underfull \hbox (badness 2478) in paragraph at lines 655--657
 \T1/aer/m/n/9 ([]\T1/aett/m/n/9 WeightedMean\T1/aer/m/n/9 ), and the stan-dard 
 de-vi-a-tion weighted
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 656--658
+Underfull \hbox (badness 1264) in paragraph at lines 655--657
 \T1/aer/m/n/9 by in-verse vari-ance and cor-rected for in-trin-sic scat-ter
  []
 
-[8] (./main.aux) ) 
+[8] (./main.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  5106 strings out of 256216
  65028 string characters out of 1917073
@@ -599,8 +603,8 @@ Here is how much of TeX's memory you used:
  89748 words of font info for 185 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  32i,15n,34p,1482b,387s stack positions out of 5000i,500n,6000p,200000b,15000s
-pdfTeX warning (dest): name{Hfootnote.1} has been referenced 
-but does not exist, replaced by a fixed one
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
 
 pdfTeX warning (dest): name{UNDEFINED} has been referenced but does not exist, 
 replaced by a fixed one
@@ -622,7 +626,7 @@ are/texmf/fonts/type1/hoekwater/rsfs/rsfs10.pfb></usr/share/texmf/fonts/type1/u
 rw/symbol/usyr.pfb></usr/share/texmf/fonts/type1/urw/symbol/usyr.pfb></usr/shar
 e/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on main.pdf (8 pages, 743060 bytes).
+Output written on main.pdf (8 pages, 742734 bytes).
 PDF statistics:
  305 PDF objects out of 1000 (max. 8388607)
  81 named destinations out of 1000 (max. 131072)
