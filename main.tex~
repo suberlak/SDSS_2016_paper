@@ -143,7 +143,7 @@ For each patch the raw lightcurves contain the \verb|id|, \verb|objectId|, \verb
 %
 %%%%%%%%%%%%%%%%% MOTIVATION %%%%%%%%%%%%%%%%%
 %
-Forced photometry in a background-subtracted epoch may yield unphysical, negative values. Such negative pixel value may originate from the background variation across the image frame. We can think of noisy background counts  as a Gaussian centered around the mean  $B_{0}$ :   $B-B_{0}  \sim  \mathcal{N}(0,\sigma_{B})$.  Thus in certain parts of the image the background may be below or above the average. Subtracting the mean value makes the low background regions of the image have a negative pixel value.  Thus if the object detected in coadded images is below detection threshold in a single epoch, we may be measuring the background noise oscillation.  In fact, the detection itself may be spurious due to the locally bright background. For a large number of photons hitting the detector the width of the distribution is  proportional to the square-root of counts: $\sigma_{B} ~ \sqrt {B}$. This yields a 1 in a million chance that a pixel has a background value larger than $5\sigma_{B}$.   Thus on a 16 megapixel CCD, like those used in SDSS, we anticipate  about  16 spuriously bright pixels  per CCD.  Since  forced photometry is affected by  the background noise, a special care must be taken of faint, noise-dominated measurements. 
+Forced photometry in a background-subtracted epoch may yield unphysical, negative values. Such negative pixel value may originate from the variation of background across the image. If we model the background counts  as a Gaussian centered around the mean  $B_{0}$ :   $B-B_{0}  \sim  \mathcal{N}(0,\sigma_{B})$, then background in some parts of the image will be above, and in other parts below the mean value. After subtraction of the mean background value, regions with previously lower than average background will have negative pixel value.  This means that a forced photometry on a location where an object is undetected in single epoch may be measuring the background noise. Apart from creating low pixel values, background oscillation may also cause spurious detections where it is above the mean. For a large number of photons hitting the detector the width of the background noise distribution is  proportional to the square-root of counts: $\sigma_{B} \propto \sqrt {B}$. This yields a 1 in a million chance that a pixel has a background value larger than $5\sigma_{B}$.   Thus on a 16 megapixel CCD, like those used in SDSS, we anticipate  about  16 spuriously bright pixels  per CCD.  Therefore,  since forced photometry is affected by  the background noise, a special care must be taken of faint, noise-dominated measurements. 
 
 %
 %%%%%%%%%%%%%%%%% TREATMENT %%%%%%%%%%%%%%%%%
@@ -681,7 +681,94 @@ We can also calculate median photometry over all individual epochs  detections, 
 
 For each band we calculate metrics describing the lightcurve behavior for a given band, including the Butler \& Bloom classifier, which can  for high S/N objects, where it has a good discriminating power. It's advantage over the full DRW analysis for each lightcurve is that by assuming a range of $\tau$, amplitude, expected for a DRW for a QSO, we calculate the likelihood of a given lightcurve belonging to a QSO ( \verb|i_metrics.csv|). 
 
+\section{\\ Variance of $\chi^{2}_{DOF}$ }
+\label{App:AppendixD}
 
+Detecting variability is similar to asking whether the data are consistent with constant signal with noise. We simulate simple sinusoidal time-series to investigate what is the minimum amplitude that can be detected given measurement errors. Our time series is sourced from a parent distribution $y(t) = A(\sin(\omega t)$ by a sample of $N~100$ points, with homoscedastic Gaussian errors :  $\epsilon \sim \mathcal{N}(0,\sigma)$.  Thus each point of the sample distribution $x_{i} = y_{i} + \epsilon_{i}$. We call the theoretical variance of the parent distribution a variance over time series. Variance over realizations of the time series (samples) with errors is an estimator of the parent variance.  For a continuous smoothly varying probability function that describes the parent distribution, the mean is the first raw moment:
+
+\begin{equation}
+\mu = \int_{-\infty}^{\infty}{x p(x) dx}
+\end{equation} 
+and the variance is the second raw moment:
+\begin{equation}
+Var = \sigma^{2} =  \int_{-\infty}^{\infty}{(x-\mu)^{2} p(x) dx} =  \int_{-\infty}^{\infty}{x^{2} p(x) dx} - \mu^{2}
+\end{equation}
+
+We denote by $\langle x \rangle$ the expectation value of $x$. Thus the above can be written as : $Var= \sigma^{2} = \langle x^{2} \rangle - \langle x \rangle ^{2}$. 
+
+For our parent distribution,  $Var(x) = Var(y+\epsilon) = Var(y) + Var(\epsilon) = Var(A \sin(x)) + \sigma^{2}$. Now from the definition, $Var(A\sin(x)) = \langle A^{2} \sin^{2}(x) \rangle - \langle A \sin(x) \rangle ^{2} = A^{2} / 2 $, because $\langle \sin^{2}(x) \rangle = 1/2$ and $\langle sin(x)\rangle = 0$ due to symmetry. Thus $Var(x) = A^{2}/2  + \sigma^{2}$. 
+
+Now,  similarly to variance, chi-square can be considered either for the theoretical parent distribution, or for the sample, where the latter may be a good estimator of the parent chi-square if sufficient sampling is available. The chi-square is often defined as a sum of squares of departures from the mean over the variance: 
+
+\begin{equation}
+\chi^{2} = \sum\frac{(x_{i} - \mu)^{2}}{\sigma^{2}}
+\end{equation}
+where $\mu$ is the predicted mean, and $\sigma^{2}$ the expected variance. When divided by the number of degrees of freedom, it is  $\chi^{2}_{DOF} = \chi^{2} / N$ (also called $\chi^{2}_{PDF}$ : per degree of freedom). After Bevington$\&$Robinson, $\chi^{2}$ can be also understood as:
+
+\begin{equation}
+\chi^{2} = \sum \frac{[h(x_{J}) - N P(x_{J})]^{2}}{\sigma_{J}(h)^{2}}
+\end{equation} 
+with $h(x_{j})$ being the observed frequencies of $x$,  $y(x_{J}) = N P(x_{J})$ the predicted distribution, and $\sigma_{J}(h)^{2}$ the variance of the parent population. It is equivalent to our definition.
+
+Thus using the first definition, for $x_{i}$ we have  $\chi^{2} = {1/N} \sum(x_{i} - \mu / \sigma)^{2}$. Since  $\mu(x) = 0$, we have:
+\begin{equation}
+\chi^{2}_{DOF} = \frac{1}{N\sigma^{2}} \sum x_{i}^{2} = 1/\sigma^{2} \langle x_{i}^{2} \rangle \approx  Var(x_{i}) / \sigma^{2}
+\end{equation}
+since for $Var(x_{i}) =  \langle x_{i}^{2} \rangle $ (zero mean). Thus we approximate the  parent variance by the sample variance: 
+
+\begin{equation}
+\chi^{2}_{DOF} \approx \frac{A^{2}/2 + \sigma^{2}}{\sigma^{2}}
+\end{equation}
+
+Now if we assume that there is no amplitude, i.e. $A=0$, $\chi^{2}_{DOF} = 1$, and the expectation value $\langle \chi^{2}_{DOF} \rangle = 1$. With zero mean, the variance of $\chi^{2}_{DOF}$ is :
+
+\begin{equation}
+Var(\chi^{2}_{DOF}) = Var\left(\frac{1}{N} \sum \frac{x_{i}^{2}}{\sigma^{2}} \right) = Var\left(\frac{v}{N \sigma^{2}}\right)
+\end{equation}
+
+Now $Var(\alpha x) = \alpha^{2} Var(x)$. Thus 
+
+\begin{equation} 
+Var\left(\frac{v}{N \sigma^{2}}\right) = \frac{Var(v)}{N^{2} \sigma^{4}} 
+\end{equation}
+
+$Var(v) = \langle v^{2} \rangle - \langle v \rangle ^{2}$. We find first the second component:  the mean $\langle v \rangle = \langle \sum x_{i}^{2} \rangle = \sum \langle x_{i}^{2} \rangle $ (no cross terms). And since $Var(x_{i}) = \langle x_{i}^{2} \rangle= \sigma^{2}$, $\langle v \rangle = \sum \sigma^{2} = N \sigma^{2}$, so that $\langle v \rangle ^{2} = N^{2} \sigma^{4}$. 
+
+The first component is less straightforward: 
+
+\begin{equation}
+\langle v^{2} \rangle  = \langle (\sum x_{i}^{2} ) ^{2} \rangle  =  \langle \sum x_{i}^{2}  \sum x_{j}^{2}   \rangle = \sum \sum \langle x_{i}^{2} x_{j}^{2} \rangle
+\end{equation}
+
+The expectation value of $x_{i}^{2} x_{j}^{2}$ involves $N$ center terms and $N^{2}-N$ cross terms : 
+
+$(x_{1}^{2} + x_{2}^{2} +x_{3}^{2} +...)(x_{1}^{2} + x_{2}^{2} +x_{3}^{2} +...)= x_{1}^{4} + x_{2}^{4}+...+x_{1}^{2}x_{2}^{2} + x_{1}^{2}x_{3}^{2}...$
+
+Thus $\langle x_{i}^{2} x_{j}^{2} \rangle = (N^{2}-N) \int x^{2} P(x) dx \int x^{2} P(x) dx  + N \int x^{4} P(x) dx  $. 
+
+Since $A=0$, $P(x)$ is a Gaussian. 
+
+We evaluate 
+\begin{equation}
+\int_{-\infty}^{\infty} \frac{x^{2}}{\sqrt{2\pi \sigma^{2}}} e^{-x^{2} / 2 \sigma^{2}} dx 
+\end{equation}
+
+substituting $u = x / \sqrt{2} \sigma$ and use the standard result  $\int u^{2} \exp(-\alpha u^{2})du = \sqrt(\pi)/2\alpha^{3/2}$ , so that :   $\int x^{2} P(x) dx = \sigma^{2}$. 
+
+similarly, for 
+
+\begin{equation}
+\int_{-\infty}^{\infty} \frac{x^{4}}{\sqrt{2\pi \sigma^{2}}} e^{-x^{2} / 2 \sigma^{2}} dx 
+\end{equation}
+
+with identical substitution and the standard result  $\int u^{4} \exp(-\alpha u^{2})du =3 \sqrt(\pi)/4\alpha^{5/2}$ we obtain : $\int x^{4} P(x) dx = 3 \sigma^{4}$.  
+
+Therefore $\langle v^{2} \rangle = (N^{2}-N) \sigma^{4} + N 3\sigma^{4} = N^{2}\sigma^{4} + 2N\sigma^{4}$
+
+Finally, 
+\begin{equation}
+Var\left(\frac{v}{N \sigma^{2}}\right) = \frac{Var(v)}{N^{2} \sigma^{4}}  = \frac{1}{N^{2}\sigma^{4}}(N^{2}\sigma^{4} + 2N\sigma^{4}-N^{2}\sigma^{4}) = \frac{2}{N}
+\end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
