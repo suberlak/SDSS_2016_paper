@@ -37,7 +37,7 @@
 % Don't change these lines unless you know what you are doing
 \usepackage[T1]{fontenc}
 \usepackage{ae,aecompl}
-\usepackage{slashbox}
+\usepackage{diagbox}
 
 %%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
 
@@ -240,7 +240,7 @@ In what follows, for faint measurements we choose to replace $F$ with $F_{mean}$
 
 - weighted standard deviation 
 \begin{equation}
-\sigma_{st.dev.w.} = \left( \frac{\sum{w_{i}(x_{i} - \bar{x})^{2}}}{\frac{N-1}{N}\sum{w_{i}}} \right) ^ {1/2}
+\sigma_{st.dev.w.} = \left( \frac{\sum{w_{i}(x_{i} - \bar{x})^{2}}}{\sum{w_{i}}} \right) ^ {1/2}
 \end{equation}
 
 - error on standard deviation 
@@ -336,25 +336,6 @@ Initially, we evaluate variability parameters $\mu_{full}$, $\sigma_{full}$, $\c
 %
 % SECOND SWIPE : SEASONS AND SEASONALLY-BINNED LIGHTCURVES 
 % 
-
-
-%
-% VALIDATION OF ASTRO ML  CODE 
-%
-
-\subsubsection{Validation of AstroML 5.8 method}
-To test the viability of the method, we simulated a simple sinusoidal time series, $x(t) = A \sin{(t)}+\mu+e$, sampling at $N=100$ equally spaced points, setting $\mu=1$, $A=1$, $e \sim \mathcal{N}(0,\sigma_{0}=0.1)$. Variance of such time series is theoretically $\sigma^{2} = Var(x) = Var(A\sin{(t)})+Var(\mathcal{N}) = A^{2}/2 + \sigma_{0}^{2} $ (see Appendix for derivation).  
-We simulate $N_{sim}= 1000$  of realizations (drawing from random Gaussian noise $\mathcal{N}(0,\sigma_{0}=0.1)$ at each iteration). 
-
-One method to distinguish the time series from Gaussian noise is to calculate the $\chi^{2}_{dof} $, which would converge to $\mathcal{N}(1,\sqrt{2/N})$ for a lack of intrinsic variability. In theory, standard deviation of $\chi^{2}_{dof} $ is $\sqrt{2/N}$, and Fig... illustrates that  we need to set amplitude to as high as 2 to distinguish it from noise.  
-
-For each realization of time series we calculate the full posterior pdf for $\sigma_{0}$ and $\mu$. We define signal $S= mean(p(\sigma))$ and noise as $N = st.dev.(p(\sigma))$. In this way we quantify the accuracy of our detection of intrinsic variability ($\sigma_{0}$) with signal-to-noise (S/N) ratio of our detection. $\chi^{2}_{dof} $ and $S/N$ are showed for few representative amplitudes on Fig... 
-
-Given amplitude $A$, fixing $\sigma_{0} =1.0$,  for each histogram of $N_{sim}$ realizations of $x(t,A)$   we calculate the completenessas as a  fraction of detections above a given $S/N$ threshold. Thus sampling over $A$ we compute completeness curves $S/N > 3$, and $S/N > 5$, shown on Fig ... 
-
-With two sources of variance, $\chi^{2}_{dof} $ method is the  most popular , but it heavily underperforms. In method of AstroML 5.8 we assume Gaussian origin of variations, but the type of variations is not known a-priori as we observe a random object. So whether we assume Gaussian origin, or sinusoidal (like for Lomb-Scargle), in the worst case we are equally wrong. 
-
-We test the performance of AstroML 5.8 method against Lomb-Scargle 10.14. 
 
 
 
